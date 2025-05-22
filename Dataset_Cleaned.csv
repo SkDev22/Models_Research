@@ -1,0 +1,199 @@
+Boarding_House_ID,Location,Room_Type,Price (LKR),C,Amenities,Ratings,Proximity_to_Landmark,Query
+BD001,Weliwita,Single,11337,Available," Air Conditioning, Study/Workspace",2.3,1.8,Find a boarding house with Air Conditioning and Study/Workspace.
+BD002,Colombo 3,Shared,10263,Available,"laundry, TV",4,2.2,Are there any boarding houses near Colombo 3?
+BD003, CINEC campus,Shared,11764,Available,"Wifi, Kitchen",3.5,2.6,Are there any boarding houses near CINEC?
+BD004,NSBM,Double,13806,Occupied,"Attach bathroom, Wifi",3.2,4.3,Are there any boarding houses near NSBM?
+BD005,SLIIT,Single,10548,Occupied,"Kitchen, AC",2.8,3.8,Are there any boarding houses near SLIIT?
+BD006,Malabe,Shared,14625,Occupied,,4.7,1.8,Show me boarding houses malabe with a rating of 1 stars.
+BD007, Mount Lavinia,Single,10441,Occupied,,2.9,5,Are there any boarding houses near Mount Lavinia?
+BD008,weliwita ,Double,14043,Available,"Study/Workspace, Attach Bathroom.",2.9,1.1,Find a boarding house weliwita with Study/Workspace and Attach Bathroom.
+BD009,Battaramulla,Double,10476,Occupied,,4.1,4.1,Are there any boarding houses near Battaramulla?
+BD010,Thalangama ,Single,10239,Available,"Attach Bathroom, Gym",4.4,2.8,Find a boarding house thalangama with Attach Bathroom and Gym.
+BD011,Borella,Shared,12445,Occupied,,5,4.1,Show me boarding houses with a rating of 5 stars.
+BD012,Kadawatha,Single,12352,Available,,4,9.1,Show me boarding houses with a rating of 4 stars.
+BD013,Colombo,Double,9646,Available,,1.6,7.3,Are there any boarding houses near Colombo?
+BD014,Colombo 3,Shared,8767,Available,"Parking, Pool, Laundry",2,8.3,Show me boarding houses with a rating of 2 stars.
+BD015,Thalahena,Single,10411,Available,,2.7,7,Are there any boarding houses near Thalahena?
+BD016,Kaduwela,Shared,12463,Occupied," Wi-Fi, Kitchen",2.4,2.2,Find a boarding house kaduwela with kitchen and wifi.
+BD017,Horizon Campus,Shared,14685,Available,Wi-Fi,1.9,5.2,Are there any boarding houses near Horizon Campus with wifi?
+BD018,NSBM,Single,9985,Occupied,"Kitchen, Laundry",2.1,6.1,Find a boarding house with Kitchen and Laundry.
+BD019,Homagama,Shared,13737,Available,"Parking, Laundry",3,8.7,Show me boarding houses with a rating of 3 stars.
+BD020,Angoda,Double,12411,Occupied,Wifi,3.4,2.4,Are there any boarding houses near Angoda?
+BD021,Pittugala,Double,8760,Available,"Wifi, parking",3.1,8.2,Are there any boarding houses near Pittugala?
+BD022,Colombo 1,Shared,8934,Available,"Laundry, Wi-Fi, Parking",1.6,5.2,Are there any boarding houses near Colombo 1?
+BD023,Dehiwala,Double,9860,Occupied,"Laundry, Kitchen",1.6,8.1,Find a boarding house with Laundry and Kitchen.
+BD024,Thalawathugoda,Shared,14276,Available,"Parking, Attach bathroom",1.3,9.1,Find a boarding house with Parking and Attach Bathroom.
+BD025,Thalahena,Shared,11721,Available,Wifi,2,4.8,Are there any boarding houses near thalahena with wifi?
+BD026,Weliwita,Shared,13993,Available,"Wi-Fi, Gym",1.7,9.6,Find a boarding house with Wi-Fi and Gym.
+BD027,Pittugala,Double,11972,Available,Wi-Fi,3,7.5,Find a boarding house in pittugala with Wi-Fi.
+BD028,Moratuwa,Single,14813,Available,Attach Bathroom and Laundry.,2.6,5.4,Find a boarding house with Attach Bathroom and Laundry.
+BD029,Kaduwela,Shared,12969,Available,,2.2,6.1,Are there any boarding houses near Kaduwela?
+BD030,Biyagama,Shared,10601,Available,"Wi-Fi, Air Conditioning",2.9,10,Are there any boarding houses near Biyagama with wifi and air condition?
+BD031,Weliwita,Single,14733,Available,"AC, Attach bathroom",2.2,3.9,Find a boarding house with Air Conditioning and Attach Bathroom.
+BD032,Moratuwa,Shared,10856,Available,"Pet-Friendly, Wi-Fi",3.1,5.6,Are there any boarding houses near Moratuwa?
+BD033,Kothalawala,Shared,11878,Occupied,"Kitchen, Attach Bathroom",1.2,5.1,Find a boarding house with Kitchen and Attach Bathroom.
+BD034,Weliwita,Double,11676,Occupied,,4.5,2.2,Are there any boarding houses near Weliwita?
+BD035,Kothalawala,Shared,9131,Available,"Wifi, parking",2.3,3.5,Find a boarding house with Wi-Fi and Parking.
+BD036,Samagi mawatha,Single,14280,Available,"Wifi, Attach bathroom",1.9,6.4,Find a boarding house with Wi-Fi and Attach Bathroom.
+BD037,Angoda,Double,14730,Occupied,"Air condition, Wifi",4.9,4.6,Find a boarding house with Air Conditioning and Wi-Fi.
+BD038,Rathmalana,Double,13592,Available,"Kitchen, Air condition",4.5,9.1,Find a boarding house with Kitchen and Air Conditioning.
+BD039,Rajagiriya,Shared,14527,Available,"Wifi, AC",5,0.7,Find a boarding house with Wi-Fi and Air Conditioning.
+BD040,SLIIT,Double,13821,Occupied,"Wifi, Kitchen",4.4,9.1,Are there any boarding houses near SLIIT University?
+BD041,Kesbewa,Double,12992,Occupied,"Laundry, Attach Bathroom",3.8,7.4,Find a boarding house with Laundry and Attach Bathroom.
+BD042,Kohuwala,Double,8423,Occupied,"Gym, Kitchen",4.6,4.6,Find a boarding house with Gym and Kitchen in kohuwala.
+BD043,Colombo 10,Single,14157,Occupied,"Parking, Laundry, ",3.7,2.3,Find a boarding house with Parking and Laundry.
+BD044,Thimbirigasyaya,Shared,14062,Available,"Parking, Wi-Fi",2.5,7.6,Find a boarding house thimbirigasyaya with Parking and Wi-Fi.
+BD045,Colombo 5,Double,13272,Occupied,"Parking, Study/Workspace",1.4,5.9,Find a boarding house with Parking and Study/Workspace in colombo 5.
+BD046,Colombo 10,Single,14165,Occupied,"Laundary, Study/Workspace",1.5,8.7,Find a boarding house with Study/Workspace and Laundry colombo 10.
+BD047,Wellawatte,Single,13707,Available,"Gym, Laundry",3.4,7.8,Find a boarding house with Gym and Laundry.
+BD048,Thalawathugoda,Single,13424,Occupied,"Parking, gym",2.2,3.1,Find a boarding house thalawathugoda with Parking and Gym.
+BD049,Colombo 5,Single,9696,Available,"Gym, Attach bathroom",1.5,7.5,Find a boarding house colombo 5 with Gym and Attach Bathroom.
+BD050,Weliwita,Single,9097,Available,"Wifi, Laundry",4.6,8,Find a boarding house with Wi-Fi and Laundry.
+BD051,Kotte,Shared,13281,Occupied," Air Conditioning, Study/Workspace",2.8,4.5,Find a boarding house kotte with Study/Workspace and Air Conditioning.
+BD052,Kesbewa,Shared,9431,Occupied,"Pool, Pet-Friendly, Parking, Gym",2.7,9.5,Are there any boarding houses near Kesbewa?
+BD053,Maharagama,Shared,9880,Available,"Kitchen, Wi-Fi",2.8,2.6,Find a boarding house with Kitchen and Wi-Fi.
+BD054,Kotte,Double,10473,Available,"Pet-Friendly, Wi-Fi, Gym",1.3,4.4,Find a boarding house with Kitchen and Kitchen.
+BD055,Colombo 4,Shared,8309,Available,"Air Conditioning, Gym, Pool",3,8,Find a boarding house with Kitchen and Gym.
+BD056,Malabe,Shared,8602,Available,"Air Conditioning, Laundry, Wi-Fi, Parking",4.6,6.3,Need a single room in Malabe close to the CINEC.
+BD057,Thalawathugoda,Double,11984,Available,"Pet-Friendly, Pool",2,3.6,Find a boarding house with Gym and Wi-Fi.
+BD058,Pannipitiya,Double,11325,Available,"Wifi, Kitchen",2.7,7.8,Find a boarding house with Wi-Fi and Kitchen.
+BD059,Wattala,Double,13667,Occupied,"Laundry, Wi-Fi, Parking",3.7,8.3,Find a boarding house with Wi-Fi and Study/Workspace.
+BD060,Rajagiriya,Single,14671,Occupied,"Laundry, Pet-Friendly",1.7,1.7,Find a boarding house with Study/Workspace and Kitchen.
+BD061,Thimbirigasyaya,Shared,8435,Available,"Wi-Fi, Laundry, Pool, Parking, Air Conditioning",2.2,2,Find a boarding house with Attach Bathroom and Parking.
+BD062,Kiribathgoda,Shared,9098,Occupied,"Pet-Friendly, Wi-Fi, Gym",3.4,4.8,Find a boarding house with Laundry and Parking.
+BD063,Homagama,Single,8460,Occupied,"Wi-Fi, Pool",2.3,3,Find a boarding house with Gym and Parking.
+BD064,Moratuwa,Single,14663,Available,"Laundry, Gym, Pool, Wi-Fi",1.6,8.8,Find a boarding house with Parking and Parking.
+BD065,Moratuwa,Double,13991,Occupied,"Study/Workspace, Parking",1.1,4.5,Find a boarding house with Study/Workspace and Parking.
+BD066,Thalawathugoda,Double,14569,Available,"Kitchen, Attach Bathroom",1.4,8.1,Find a boarding house with kitchen and Attach Bathroom.
+BD067,Colombo 1,Single,10985,Available,"Gym,Study/workspace",2.1,2.5,Find a boarding house with Gym and Study/Workspace.
+BD068,Colombo 3,Single,9909,Occupied,"Parking, Pool, Air Conditioning",4.6,2.9,"Find a boarding house with parking, pool, Laundry and Air Conditioning."
+BD069,Colombo 9,Single,11098,Occupied,"Laundry, Pet-Friendly, Parking, Wi-Fi",4.2,4.7,Find a boarding house with Gym and Gym.
+BD070,Colombo 9,Shared,11471,Available,"Parking, Gym, Wi-Fi, Air Conditioning, Pet-Friendly",2.5,9.3,Show me boarding houses with a rating of 2.5 stars.
+BD071,Kiribathgoda,Shared,8065,Occupied,"Wi-Fi, Pet-Friendly, Laundry, Gym",2,8.7,Find a boarding house with Attach Bathroom and Study/Workspace.
+BD072,Moratuwa,Shared,11259,Available,"Gym, Pet-Friendly",3.7,4.2,Find a boarding house with Air Conditioning and Air Conditioning.
+BD073,Pelawatte,Shared,14173,Occupied,"Laundry, Pool, Parking, Pet-Friendly, Gym",1.9,9.6,Show me boarding houses near CINEC with a rating of 5 stars.
+BD074,Colombo 6,Double,14716,Available,"Air Conditioning, Pet-Friendly",4.1,2.2,Find a boarding house with Air Conditioning and Parking.
+BD075,Pannipitiya,Single,11966,Available,"Gym, Air Conditioning, Pool",4.4,8.4,Find a boarding house with Attach Bathroom and Kitchen.
+BD076,Nugegoda,Double,11259,Occupied,"Pet-Friendly, Air Conditioning, Pool",1.3,3.4,Find a boarding house with Laundry and Wi-Fi.
+BD077,Pelawatte,Double,14333,Occupied,"Laundry, Air Conditioning, Wi-Fi, Parking",3.1,2.1,Find a boarding house with Study/Workspace and Wi-Fi.
+BD078,Colombo 4,Single,12778,Available,"Wi-Fi, Laundry, Pet-Friendly, Gym, Pool",1.5,0.9,Find a boarding house with Gym and Air Conditioning.
+BD079,Colombo 9,Single,12624,Occupied,"Laundry, Pool",3.4,4.1,Find a boarding house with Laundry and Study/Workspace.
+BD080,Kiribathgoda,Single,10163,Occupied,"Kitchen, Parking",4,5.1,Find a boarding house with Kitchen and Parking.
+BD081,Nugegoda,Shared,12909,Occupied,"Parking, Laundry, Wi-Fi",2.7,7.9,Find a boarding house with Parking and Air Conditioning.
+BD082,Piliyandala,Single,9740,Available,"Laundry, Gym",2.5,7,Find a boarding house with Laundry and Gym.
+BD083,Kirulapone,Single,13036,Available,"Attach bathroom, Air condition",3.7,2.9,Find a boarding house with Attach Bathroom and Air Conditioning.
+BD084,Colombo 8,Shared,11577,Occupied,"Air Conditioning,Laundry",2.4,3.9,Find a boarding house with Air Conditioning and Laundry.
+BD085,Homagama,Single,8537,Available,"Attach bathroom, Wifi",1.6,8.6,Find a boarding house with Attach Bathroom and Wi-Fi.
+BD086,Dehiwala,Shared,9295,Available,"Air condition, Gym",4.4,3.4,Find a boarding house with Air Conditioning and Gym.
+BD087,Pannipitiya,Single,9741,Occupied,"Kitchen, Air Conditioning",1.6,0.6,Find a boarding house with Air Conditioning and Kitchen.
+BD088,Colombo 9,Shared,14183,Available,"Pool, Parking, Gym, Wi-Fi, Pet-Friendly",1.8,4.9,Find a boarding house colombo 9 with Laundry.
+BD089,Anuradhapura,Shared,9782,Available,"Parking, Kitchen",4.9,9.4,Find a boarding house with Parking and Kitchen.
+BD090,Pannipitiya,Shared,11742,Occupied,"Air Conditioning, Pool, Gym, Parking, Laundry",3.2,7.3,Give me details about Attach Bathroom.
+BD091,Narahenpita,Double,14847,Available,"Kitchen, Study/Workspace",2.7,3.5,Find a boarding house with Kitchen and Study/Workspace.
+BD092,Borella,Single,14258,Occupied,"Pet-Friendly, Air Conditioning, Laundry",1.2,4.7,Are there any boarding hous in borella
+BD093,Mount Lavinia,Single,8190,Occupied,"Laundry, Parking, Pool",2.9,3.5,Find a boarding house mount lavinia with Study/Workspace and Gym.
+BD094,Colombo 3,Single,9302,Available,"Laundry, Gym, Pet-Friendly, Wi-Fi, Parking",4.2,4.3,Need a single room in Colombo 3.
+BD095,Kaduwela,Double,13508,Occupied,"Air Conditioning, Pet-Friendly, Parking, Wi-Fi, Pool",1.5,1.4,Need a single room in Kaduwela close to the SLIIT university.
+BD096,Rajagiriya,Shared,9287,Available,"Pet-Friendly, Wi-Fi, Pool, Laundry, Air Conditioning",4.3,7,Need a single room in Rajagiriya with rating of 5 stars.
+BD097,Gall,Shared,10000,Available,laundry,4.5,1.3,cheap boarding house in galle with laundry
+BD098,Anuradhapura,Shared,9500,Occupied,"laundry, parking",5,2.8,"cheap boarding house in anuradhapura with laundry, parking"
+BD099,badulla,Shared,7141,Occupied,"gym, pet friendly, wifi",3.4,5.83,"cheap boarding house in badulla with gym, pet friendly, wifi"
+BD100,matara,Shared,18623,Occupied,"air conditioning, gym",3.7,4.73,"affordable boarding house in matara with air conditioning, gym"
+BD101,puttalam,Single,9064,Occupied,"parking, tv",3.2,9.31,"cheap boarding house in puttalam with parking, tv"
+BD102,kurunegala,Single,18435,Occupied,"balcony, hot water",3.2,8.05,"affordable boarding house in kurunegala with balcony, hot water"
+BD103,trincomalee,Single,12951,Occupied,gym,1.9,3.74,expensive boarding house in trincomalee with gym
+BD104,kaduwela,Shared,8808,Occupied,"parking, balcony",4.4,4.54,"affordable boarding house in kaduwela with parking, balcony"
+BD105,nuwara eliya,Double,7699,Occupied,kitchen,1.6,9.71,expensive boarding house in nuwara eliya with kitchen
+BD106,puttalam,Single,16104,Available,pet friendly,2.2,4.95,expensive boarding house in puttalam with pet friendly
+BD107,trincomalee,Single,10567,Occupied,"hot water, breakfast",3.6,9.45,"expensive boarding house in trincomalee with hot water, breakfast"
+BD108,colombo,Single,17773,Occupied,pet friendly,2.1,4.79,expensive boarding house in colombo with pet friendly
+BD109,colombo,Shared,9211,Available,"security, wifi, breakfast",5,7.52,"affordable boarding house in colombo with security, wifi, breakfast"
+BD110,batticaloa,Single,18665,Occupied,"air conditioning, hot water",2.7,6.22,"affordable boarding house in batticaloa with air conditioning, hot water"
+BD111,hambantota,Shared,11912,Available,garden,3.4,7.79,affordable boarding house in hambantota with garden
+BD112,polonnaruwa,Shared,11226,Available,"balcony, parking",3.3,4.66,"cheap boarding house in polonnaruwa with balcony, parking"
+BD113,jaffna,Single,14730,Occupied,parking,2.4,8.59,expensive boarding house in jaffna with parking
+BD114,kurunegala,Shared,7067,Occupied,breakfast,4.2,5.56,expensive boarding house in kurunegala with breakfast
+BD115,jaffna,Shared,18602,Occupied,"air conditioning, wifi",2.3,6.13,"cheap boarding house in jaffna with air conditioning, wifi"
+BD116,kandy,Double,14638,Occupied,laundry,4.9,4.66,expensive boarding house in kandy with laundry
+BD117,matara,Shared,10594,Occupied,"garden, pet friendly, parking",2.1,5.88,"affordable boarding house in matara with garden, pet friendly, parking"
+BD118,ratnapura,Shared,10979,Occupied,air conditioning,4,4.75,affordable boarding house in ratnapura with air conditioning
+BD119,kandy,Double,15063,Available,"garden, air conditioning",4.7,3.93,"expensive boarding house in kandy with garden, air conditioning"
+BD120,vavuniya,Single,8087,Available,"security, balcony, laundry",3.1,5.5,"cheap boarding house in vavuniya with security, balcony, laundry"
+BD121,matara,Shared,19498,Available,"balcony, wifi, laundry",1,7.54,"expensive boarding house in matara with balcony, wifi, laundry"
+BD122,kandy,Single,12466,Available,laundry,2.1,7.99,affordable boarding house in kandy with laundry
+BD123,batticaloa,Double,10518,Available,tv,1.3,6.63,affordable boarding house in batticaloa with tv
+BD124,colombo,Double,8884,Available,"hot water, breakfast",1.1,8.7,"affordable boarding house in colombo with hot water, breakfast"
+BD125,colombo,Single,13545,Occupied,security,2.7,8.56,expensive boarding house in colombo with security
+BD126,negombo,Single,9068,Available,"laundry, garden, kitchen",2.6,8.36,"affordable boarding house in negombo with laundry, garden, kitchen"
+BD127,matara,Shared,9559,Occupied,air conditioning,1.5,8.82,cheap boarding house in matara with air conditioning
+BD128,trincomalee,Double,13705,Available,hot water,1.8,4.13,expensive boarding house in trincomalee with hot water
+BD129,galle,Single,16012,Occupied,"kitchen, tv, hot water",3.6,3.45,"expensive boarding house in galle with kitchen, tv, hot water"
+BD130,jaffna,Shared,12890,Available,gym,3,4.89,cheap boarding house in jaffna with gym
+BD131,vavuniya,Double,13667,Available,"breakfast, pet friendly",2.2,9.73,"cheap boarding house in vavuniya with breakfast, pet friendly"
+BD132,negombo,Shared,17564,Available,"hot water, pet friendly",3.1,2.54,"affordable boarding house in negombo with hot water, pet friendly"
+BD133,vavuniya,Shared,18709,Available,"parking, security, kitchen",4.7,5.54,"affordable boarding house in vavuniya with parking, security, kitchen"
+BD134,kurunegala,Single,15559,Occupied,"kitchen, wifi, breakfast",3.9,5.14,"affordable boarding house in kurunegala with kitchen, wifi, breakfast"
+BD135,batticaloa,Single,19980,Available,"air conditioning, breakfast",3.9,4.87,"affordable boarding house in batticaloa with air conditioning, breakfast"
+BD136,hambantota,Shared,13886,Occupied,"gym, breakfast",3.1,5.42,"cheap boarding house in hambantota with gym, breakfast"
+BD137,kandy,Single,18965,Available,"breakfast, garden, parking",2.8,9.48,"affordable boarding house in kandy with breakfast, garden, parking"
+BD138,batticaloa,Shared,17753,Available,"laundry, garden",2.1,5.22,"affordable boarding house in batticaloa with laundry, garden"
+BD139,colombo,Single,11856,Occupied,"kitchen, garden",2.5,6.94,"cheap boarding house in colombo with kitchen, garden"
+BD140,vavuniya,Shared,12621,Available,breakfast,1.1,9.19,expensive boarding house in vavuniya with breakfast
+BD141,kandy,Double,12662,Occupied,parking,5,6.3,expensive boarding house in kandy with parking
+BD142,jaffna,Shared,16416,Available,"wifi, laundry, security",1.9,8.07,"cheap boarding house in jaffna with wifi, laundry, security"
+BD143,ratnapura,Single,13822,Available,tv,1,7.69,expensive boarding house in ratnapura with tv
+BD144,kandy,Shared,18616,Occupied,"breakfast, garden",3.1,2.68,"affordable boarding house in kandy with breakfast, garden"
+BD145,puttalam,Shared,7805,Occupied,"pet friendly, balcony",1.2,6.5,"affordable boarding house in puttalam with pet friendly, balcony"
+BD146,colombo,Double,8023,Occupied,"tv, hot water",4.2,2.74,"expensive boarding house in colombo with tv, hot water"
+BD147,kaduwela,Double,9330,Occupied,"breakfast, parking, gym",3.3,9.94,"cheap boarding house in kaduwela with breakfast, parking, gym"
+BD148,jaffna,Shared,8479,Occupied,"gym, security, air conditioning",2.5,4,"cheap boarding house in jaffna with gym, security, air conditioning"
+BD149,matara,Double,17589,Occupied,"tv, garden, wifi",1.8,6.52,"expensive boarding house in matara with tv, garden, wifi"
+BD150,puttalam,Single,17800,Available,"wifi, air conditioning",3.3,4.09,"affordable boarding house in puttalam with wifi, air conditioning"
+BD151,galle,Single,18233,Occupied,"gym, kitchen",1.1,5.58,"expensive boarding house in galle with gym, kitchen"
+BD152,matara,Single,10149,Available,"gym, tv, air conditioning",1.4,3.45,"expensive boarding house in matara with gym, tv, air conditioning"
+BD153,puttalam,Shared,9976,Available,"pet friendly, breakfast, tv",4.5,3.59,"affordable boarding house in puttalam with pet friendly, breakfast, tv"
+BD154,trincomalee,Single,9085,Occupied,parking,1.1,8.11,cheap boarding house in trincomalee with parking
+BD155,galle,Shared,16485,Occupied,"air conditioning, security",3.8,7,"cheap boarding house in galle with air conditioning, security"
+BD156,galle,Double,11910,Occupied,"parking, balcony, breakfast",3.6,7.25,"cheap boarding house in galle with parking, balcony, breakfast"
+BD157,polonnaruwa,Shared,10337,Occupied,"breakfast, wifi",4.6,6.11,"affordable boarding house in polonnaruwa with breakfast, wifi"
+BD158,jaffna,Single,15914,Occupied,garden,1.3,4.03,expensive boarding house in jaffna with garden
+BD159,nuwara eliya,Double,16361,Occupied,"breakfast, tv",2.8,8.55,"cheap boarding house in nuwara eliya with breakfast, tv"
+BD160,kurunegala,Shared,18767,Occupied,"pet friendly, air conditioning",2.9,5.35,"affordable boarding house in kurunegala with pet friendly, air conditioning"
+BD161,kandy,Single,17122,Available,"breakfast, wifi",2.8,7.12,"expensive boarding house in kandy with breakfast, wifi"
+BD162,badulla,Shared,16622,Occupied,"laundry, garden, air conditioning",2.6,8.99,"expensive boarding house in badulla with laundry, garden, air conditioning"
+BD163,jaffna,Double,11634,Available,"garden, pet friendly",4.3,7.19,"expensive boarding house in jaffna with garden, pet friendly"
+BD164,batticaloa,Single,11222,Available,gym,4.8,4.57,cheap boarding house in batticaloa with gym
+BD165,kurunegala,Single,10867,Available,"air conditioning, garden",2.4,4.03,"cheap boarding house in kurunegala with air conditioning, garden"
+BD166,jaffna,Double,10942,Occupied,air conditioning,2.2,3.15,affordable boarding house in jaffna with air conditioning
+BD167,nuwara eliya,Shared,9338,Available,"hot water, parking",3,7.22,"cheap boarding house in nuwara eliya with hot water, parking"
+BD168,vavuniya,Shared,11750,Occupied,air conditioning,4.7,5.38,cheap boarding house in vavuniya with air conditioning
+BD169,kurunegala,Double,16176,Available,"breakfast, tv",3.3,8.47,"affordable boarding house in kurunegala with breakfast, tv"
+BD170,trincomalee,Single,12848,Occupied,"parking, air conditioning",4.7,3.16,"expensive boarding house in trincomalee with parking, air conditioning"
+BD171,vavuniya,Shared,15480,Available,wifi,1.5,3.98,expensive boarding house in vavuniya with wifi
+BD172,jaffna,Shared,12371,Occupied,"gym, pet friendly, air conditioning",2.2,7.1,"expensive boarding house in jaffna with gym, pet friendly, air conditioning"
+BD173,batticaloa,Shared,19638,Occupied,air conditioning,3.4,6.19,affordable boarding house in batticaloa with air conditioning
+BD174,ratnapura,Single,19017,Available,"gym, hot water, kitchen",2.1,4.72,"cheap boarding house in ratnapura with gym, hot water, kitchen"
+BD175,Malabe,Shared,7821,Available,kitchen,3,3.45,expensive boarding house in Malabe with kitchen
+BD176,matara,Double,11500,Available,"gym, air conditioning, garden",4.6,4.08,"cheap boarding house in matara with gym, air conditioning, garden"
+BD177,anuradhapura,Double,10511,Available,"tv, garden, hot water",1.7,6.19,"affordable boarding house in anuradhapura with tv, garden, hot water"
+BD178,galle,Single,8240,Occupied,garden,2.7,8.35,expensive boarding house in galle with garden
+BD179,kaduwela,Single,18986,Occupied,"parking, gym",4.3,5.62,"cheap boarding house in kaduwela with parking, gym"
+BD180,kandy,Shared,9779,Occupied,"breakfast, parking",4.9,6.9,"affordable boarding house in kandy with breakfast, parking"
+BD181,galle,Shared,10527,Available,"gym, tv, parking",4.4,5.78,"expensive boarding house in galle with gym, tv, parking"
+BD182,jaffna,Single,17297,Occupied,"air conditioning, pet friendly",3.4,4.82,"cheap boarding house in jaffna with air conditioning, pet friendly"
+BD183,ratnapura,Shared,16325,Available,"gym, garden, pet friendly",3.6,8.87,"expensive boarding house in ratnapura with gym, garden, pet friendly"
+BD184,Malabe,Double,17394,Available,balcony,2.1,3.25,expensive boarding house in malabe with balcony
+BD185,jaffna,Shared,11398,Available,breakfast,1,6.26,affordable boarding house in jaffna with breakfast
+BD186,hambantota,Double,9499,Occupied,gym,4,5.77,affordable boarding house in hambantota with gym
+BD187,anuradhapura,Double,14455,Available,"gym, tv",3.6,7.97,"cheap boarding house in anuradhapura with gym, tv"
+BD188,batticaloa,Single,14984,Occupied,wifi,1.6,3.28,cheap boarding house in batticaloa with wifi
+BD189,hambantota,Shared,15618,Available,tv,3.9,8.56,expensive boarding house in hambantota with tv
+BD190,kurunegala,Double,19273,Occupied,laundry,2.2,9.76,affordable boarding house in kurunegala with laundry
+BD191,Malabe,Single,10398,Occupied,hot water,2,6.67,affordable boarding house in malabe with hot water
+BD192,anuradhapura,Double,9397,Available,"parking, tv",2.3,7.16,"affordable boarding house in anuradhapura with parking, tv"
+BD193,nuwara eliya,Double,12430,Occupied,"kitchen, tv, balcony",1.9,8.82,"affordable boarding house in nuwara eliya with kitchen, tv, balcony"
+BD194,kaduwela,Single,10954,Available,"kitchen, tv, pet friendly",2.8,7.34,"affordable boarding house in kaduwela with kitchen, tv, pet friendly"
+BD195,kandy,Double,14658,Available,tv,2.3,5.55,cheap boarding house in kandy with tv
+BD196,Malabe,Shared,12820,Available,"pet friendly, air conditioning",1.6,8.19,"cheap boarding house in malabe with pet friendly, air conditioning"
+BD197,colombo,Shared,9204,Available,"air conditioning, breakfast",2.4,7.61,"expensive boarding house in colombo with air conditioning, breakfast"
+BD198,matara,Double,10889,Occupied,"breakfast, garden",3.4,7.93,"cheap boarding house in matara with breakfast, garden"
