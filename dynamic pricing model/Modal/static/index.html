@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Pricing Model</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .score-card {
+            transition: transform 0.2s;
+        }
+        .score-card:hover {
+            transform: translateY(-5px);
+        }
+        .amenity-badge {
+            margin: 2px;
+            font-size: 0.9em;
+        }
+        .price-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .price-card:hover {
+            transform: translateY(-5px);
+        }
+        .price-card.current {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+        }
+        .price-card.current .text-muted {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        .price-estimate {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .month-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Dynamic Price Allocator</a>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <!-- Input Form -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Enter Property Details</h5>
+                        <form id="predictionForm">
+    <!-- Boarding House Info -->
+    <div class="mb-4">
+        <h6 class="mb-3">Boarding House Info</h6>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Boarding House Name</label>
+                    <input type="text" class="form-control" name="boarding_house_name" required placeholder="e.g. Green Villa Hostel">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Owner Mobile Number</label>
+                    <input type="tel" class="form-control" name="owner_mobile" required pattern="[0-9]{10}" placeholder="e.g. 0771234567">
+                    <small class="text-muted">Enter a valid 10-digit mobile number</small>
+                </div>
+            </div>
+        </div>
+    </div>
+                            <!-- Room Type Selection -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Room Type</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Room Category</label>
+                                            <select class="form-select" name="room_type" required>
+                                                <option value="">Select Room Type</option>
+                                                <option value="single">Single Room</option>
+                                                <option value="shared-2">Shared Room (2 Person)</option>
+                                                <option value="shared-4">Shared Room (4 Person)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Number of Students Sharing</label>
+                                            <input type="number" class="form-control" name="num_sharing" min="1" max="4" value="1" required>
+                                            <small class="text-muted">For shared rooms, enter how many students will share the cost</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Location Details -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Location Details</h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nearest University</label>
+                                            <select class="form-select" name="university" required>
+                                                <option value="">Select University</option>
+                                                <option value="University of Colombo" data-lat="6.9022" data-lng="79.8607" data-distance="0.3" data-transport="0.15">University of Colombo</option>
+                                                <option value="University of Sri Jayawardenapura" data-lat="6.8535" data-lng="79.9028" data-distance="0.5" data-transport="0.2">University of Sri Jayawardenapura</option>
+                                                <option value="University of Kelaniya" data-lat="6.9747" data-lng="79.9164" data-distance="0.4" data-transport="0.18">University of Kelaniya</option>
+                                                <option value="University of Moratuwa" data-lat="6.7981" data-lng="79.9002" data-distance="0.6" data-transport="0.25">University of Moratuwa</option>
+                                                <option value="University of the Visual and Performing Arts" data-lat="6.9271" data-lng="79.8612" data-distance="0.5" data-transport="0.2">University of the Visual and Performing Arts</option>
+                                                <option value="SLIIT" data-lat="6.9147" data-lng="79.9723" data-distance="0.5" data-transport="0.2">SLIIT (Malabe)</option>
+                                                <option value="NSBM" data-lat="6.8213" data-lng="80.0413" data-distance="0.5" data-transport="0.2">NSBM Green University</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Distance to University (km)</label>
+                                            <input type="number" class="form-control" name="distance_to_uni" step="0.1" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Distance to nearest bus stand (km)</label>
+                                            <input type="number" class="form-control" name="distance_to_transport" step="0.1" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Safety Score (1-10)</label>
+                                            <input type="number" class="form-control" name="safety_score" min="1" max="10" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Enhanced Google Map Preview for Boarding House & University -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <!-- Address Search for Boarding House -->
+                                        <div class="mb-2">
+                                            <input id="bh-address" class="form-control form-control-sm" type="text" placeholder="Search your boarding house address or place...">
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <button type="button" class="btn btn-outline-primary btn-sm" id="getLocationBtn">
+                                                <i class="bi bi-geo-alt-fill"></i> Use My Location as Boarding House
+                                            </button>
+                                            <button type="button" class="btn btn-outline-success btn-sm ms-2" id="confirmLocationBtn" style="display:none;">
+                                                <i class="bi bi-check-circle"></i> Confirm Location
+                                            </button>
+                                            <input type="hidden" name="bh_lat" id="bh_lat">
+                                            <input type="hidden" name="bh_lng" id="bh_lng">
+                                            <span id="locationCoords" class="text-muted small ms-2"></span> <span id="locationAccuracy" class="text-warning small ms-2"></span> <span id="dragHint" class="text-info small ms-2" style="display:none;">(You can drag the red marker to fine-tune your location)</span>
+                                            <span id="distanceDisplay" class="text-success" style="display:none;"></span>
+                                        </div>
+                                        <div id="map-preview" style="width: 100%; height: 320px; border-radius: 10px; overflow: hidden; display: none;"></div>
+                                        <small class="text-muted">Map will show both the university and your boarding house location. Distance will be calculated automatically.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Amenities -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Amenities</h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_wifi">
+                                            <label class="form-check-label">WiFi</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_attached_bathroom">
+                                            <label class="form-check-label">Attached Bathroom</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_ac">
+                                            <label class="form-check-label">Air Conditioning</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_kitchen">
+                                            <label class="form-check-label">Kitchen</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_laundry">
+                                            <label class="form-check-label">Laundry</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_parking">
+                                            <label class="form-check-label">Parking</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="meals_provided">
+                                            <label class="form-check-label">Meals Provided</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_study_table">
+                                            <label class="form-check-label">Study Table</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="has_cupboard">
+                                            <label class="form-check-label">Cupboard</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reviews -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Reviews & Ratings</h6>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Overall Rating (1-5)</label>
+                                            <input type="number" class="form-control" name="overall_rating" min="1" max="5" step="0.1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Number of Reviews</label>
+                                            <input type="number" class="form-control" name="num_reviews" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Response Time (hrs)</label>
+                                            <input type="number" class="form-control" name="landlord_response_time" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Value Rating (1-5)</label>
+                                            <input type="number" class="form-control" name="value_rating" min="1" max="5" step="0.1" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Predict Price</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="col-lg-4">
+                <div id="results" style="display: none;">
+                    <!-- Price Predictions Section -->
+                    <div class="price-predictions mb-4">
+                        <h5 class="mb-3">Price Predictions</h5>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="card price-card">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted mb-1" id="lastMonthLabel">Previous Month</p>
+                                        <h3 class="price-estimate mb-0" id="lastMonthPrice">Rs. 0</h3>
+                                        <div class="mt-2">
+                                            <small class="text-muted" id="lastMonthReason"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card price-card current">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted mb-1" id="currentMonthLabel">Current Month</p>
+                                        <h3 class="price-estimate mb-0" id="currentPrice">Rs. 0</h3>
+                                        <div class="mt-2">
+                                            <small class="text-muted" id="currentMonthChange"></small>
+                                            <br>
+                                            <small class="text-muted" id="currentMonthReason"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card price-card">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted mb-1" id="nextMonthLabel">Next Month</p>
+                                        <h3 class="price-estimate mb-0" id="nextMonthPrice">Rs. 0</h3>
+                                        <div class="mt-2">
+                                            <small class="text-muted" id="nextMonthChange"></small>
+                                            <br>
+                                            <small class="text-muted" id="nextMonthReason"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card price-card">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted mb-1">Next Year Estimate</p>
+                                        <h3 class="price-estimate mb-0" id="nextYearPrice">Rs. 0</h3>
+                                        <small class="text-muted">Including inflation</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Score Cards -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-12">
+                            <div class="card score-card bg-info bg-opacity-10">
+                                <div class="card-body text-center">
+                                    <h6 class="card-subtitle mb-2">Amenity Score</h6>
+                                    <h4 class="mb-0" id="amenityScore">0/10</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card score-card bg-success bg-opacity-10">
+                                <div class="card-body text-center">
+                                    <h6 class="card-subtitle mb-2">Location Score</h6>
+                                    <h4 class="mb-0" id="locationScore">0/10</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card score-card bg-warning bg-opacity-10">
+                                <div class="card-body text-center">
+                                    <h6 class="card-subtitle mb-2">Review Score</h6>
+                                    <h4 class="mb-0" id="reviewScore">0/10</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities List -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">Available Amenities</h6>
+                            <div id="amenitiesList" class="mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOOorcOanGjPkvqsrakNZRslSswhZ-7Ys"></script>
+    <script src="/static/script.js"></script>
+    <script>
+    // Enhanced Google Maps integration for Boarding House + University
+    let map, uniMarker, bhMarker, line, uniLatLng, bhLatLng;
+    let directionsService, directionsRenderer;
+    // previewMode: if true, don't update hidden fields or trigger distance calculation
+function updateMap(previewMode = false) {
+        const mapDiv = document.getElementById('map-preview');
+        mapDiv.style.display = (uniLatLng || bhLatLng) ? 'block' : 'none';
+        if (!map) {
+            map = new google.maps.Map(mapDiv, {
+                center: uniLatLng || bhLatLng,
+                zoom: 15
+            });
+        }
+        // Set up DirectionsService and DirectionsRenderer
+        if (!directionsService) directionsService = new google.maps.DirectionsService();
+        if (!directionsRenderer) {
+            directionsRenderer = new google.maps.DirectionsRenderer({suppressMarkers: false, map: map});
+        } else {
+            directionsRenderer.setMap(map);
+        }
+        // University marker
+        if (uniLatLng) {
+            if (!uniMarker) {
+                uniMarker = new google.maps.Marker({
+                    position: uniLatLng,
+                    map,
+                    icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                    title: 'Selected University'
+                });
+            } else {
+                uniMarker.setPosition(uniLatLng);
+                uniMarker.setMap(map);
+            }
+        } else if (uniMarker) {
+            uniMarker.setMap(null);
+        }
+        // Boarding house marker (draggable, clickable)
+        if (bhLatLng) {
+            if (!bhMarker) {
+                bhMarker = new google.maps.Marker({
+                    position: bhLatLng,
+                    map,
+                    icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                    title: 'Boarding House Location',
+                    draggable: true
+                });
+                bhMarker.addListener('dragend', function(e) {
+                    bhLatLng = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+                    document.getElementById('bh_lat').value = bhLatLng.lat;
+                    document.getElementById('bh_lng').value = bhLatLng.lng;
+                    document.getElementById('locationCoords').textContent = `Lat: ${bhLatLng.lat.toFixed(5)}, Lng: ${bhLatLng.lng.toFixed(5)}`;
+                    updateMap();
+                });
+            } else {
+                bhMarker.setPosition(bhLatLng);
+                bhMarker.setMap(map);
+            }
+        } else if (bhMarker) {
+            bhMarker.setMap(null);
+        }
+        // Allow user to click on map to set/move marker
+        if (map && !map._bhClickListener) {
+            map._bhClickListener = map.addListener('click', function(e) {
+                bhLatLng = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+                document.getElementById('bh_lat').value = bhLatLng.lat;
+                document.getElementById('bh_lng').value = bhLatLng.lng;
+                document.getElementById('locationCoords').textContent = `Lat: ${bhLatLng.lat.toFixed(5)}, Lng: ${bhLatLng.lng.toFixed(5)}`;
+                updateMap();
+            });
+        }
+        // Show route and compute road distance
+        if (uniLatLng && bhLatLng) {
+            directionsService.route({
+                origin: bhLatLng,
+                destination: uniLatLng,
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function(response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(response);
+                    // Get distance from response
+                    const route = response.routes[0];
+                    let dist = 0;
+                    if (route && route.legs && route.legs.length > 0) {
+                        dist = route.legs[0].distance.value / 1000; // in km
+                        document.getElementById('distanceDisplay').textContent = `Road Distance: ${dist.toFixed(2)} km`;
+                        document.getElementById('distanceDisplay').style.display = 'inline-block';
+                        // Auto-fill distance field
+                        const distInput = document.querySelector('input[name="distance_to_uni"]');
+                        if (distInput) distInput.value = dist.toFixed(2);
+                    }
+                } else {
+                    directionsRenderer.setDirections({routes: []});
+                    document.getElementById('distanceDisplay').style.display = 'none';
+                }
+            });
+            map.setCenter({lat: (uniLatLng.lat + bhLatLng.lat)/2, lng: (uniLatLng.lng + bhLatLng.lng)/2});
+        } else {
+            if (directionsRenderer) directionsRenderer.setDirections({routes: []});
+            document.getElementById('distanceDisplay').style.display = 'none';
+        }
+    }
+    function hideMap() {
+        document.getElementById('map-preview').style.display = 'none';
+        if (uniMarker) uniMarker.setMap(null);
+        if (bhMarker) bhMarker.setMap(null);
+        if (line) line.setMap(null);
+        document.getElementById('distanceDisplay').style.display = 'none';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const uniSelect = document.querySelector('select[name="university"]');
+        const distInput = document.querySelector('input[name="distance_to_uni"]');
+        const transInput = document.querySelector('input[name="distance_to_transport"]');
+        const getLocationBtn = document.getElementById('getLocationBtn');
+        const confirmLocationBtn = document.getElementById('confirmLocationBtn');
+        // University selection
+        if (uniSelect) {
+            uniSelect.addEventListener('change', function() {
+                const selected = uniSelect.options[uniSelect.selectedIndex];
+                if (selected.dataset.lat && selected.dataset.lng) {
+                    uniLatLng = {lat: parseFloat(selected.dataset.lat), lng: parseFloat(selected.dataset.lng)};
+                    updateMap();
+                    // Prefill distances if available (but only if boarding house not set)
+                    if (!bhLatLng) {
+                        if (selected.dataset.distance) distInput.value = selected.dataset.distance;
+                        if (selected.dataset.transport) transInput.value = selected.dataset.transport;
+                    }
+                } else {
+                    uniLatLng = null;
+                    updateMap();
+                }
+            });
+        }
+        // Get boarding house location
+        let geoWatchId = null, bestGeo = null;
+        if (getLocationBtn) {
+            getLocationBtn.addEventListener('click', function() {
+                if (navigator.geolocation) {
+                    getLocationBtn.disabled = true;
+                    getLocationBtn.textContent = 'Getting location...';
+                    document.getElementById('locationAccuracy').textContent = '';
+                    document.getElementById('dragHint').style.display = 'none';
+                    bestGeo = null;
+                    geoWatchId = navigator.geolocation.watchPosition(function(pos) {
+                        const lat = pos.coords.latitude;
+                        const lng = pos.coords.longitude;
+                        const acc = pos.coords.accuracy;
+                        // Optionally, check if location is in Sri Lanka bounds
+                        if (lat < 5.8 || lat > 10.1 || lng < 79.6 || lng > 82.1) {
+                            document.getElementById('locationAccuracy').textContent = 'Location seems outside Sri Lanka.';
+                            return;
+                        }
+                        // Save best accuracy so far
+                        if (!bestGeo || acc < bestGeo.accuracy) {
+                            bestGeo = {lat, lng, accuracy: acc};
+                            document.getElementById('locationCoords').textContent = `Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`;
+                            document.getElementById('locationAccuracy').textContent = `Accuracy: ±${Math.round(acc)} m`;
+                            // Place marker for preview
+                            bhLatLng = {lat, lng};
+                            updateMap(true); // preview mode, don't update hidden fields yet
+                            confirmLocationBtn.style.display = 'inline-block';
+                            document.getElementById('dragHint').style.display = 'inline';
+                        }
+                        if (acc <= 30) { // Good accuracy, stop early
+                            document.getElementById('locationAccuracy').textContent += ' (Good)';
+                        }
+                    }, function(err) {
+                        alert('Unable to retrieve your location. Please allow location access in your browser.');
+                        getLocationBtn.disabled = false;
+                        getLocationBtn.textContent = 'Use My Location as Boarding House';
+                    }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 });
+                } else {
+                    alert('Geolocation is not supported by your browser.');
+                }
+            });
+        }
+        if (confirmLocationBtn) {
+            confirmLocationBtn.addEventListener('click', function() {
+                if (geoWatchId !== null) {
+                    navigator.geolocation.clearWatch(geoWatchId);
+                    geoWatchId = null;
+                }
+                if (bestGeo) {
+                    bhLatLng = {lat: bestGeo.lat, lng: bestGeo.lng};
+                    document.getElementById('bh_lat').value = bestGeo.lat;
+                    document.getElementById('bh_lng').value = bestGeo.lng;
+                    document.getElementById('locationCoords').textContent = `Lat: ${bestGeo.lat.toFixed(5)}, Lng: ${bestGeo.lng.toFixed(5)}`;
+                    document.getElementById('locationAccuracy').textContent = 'Location confirmed.';
+                    updateMap(); // normal mode
+                    getLocationBtn.textContent = 'Use My Location as Boarding House';
+                    getLocationBtn.disabled = false;
+                    confirmLocationBtn.style.display = 'none';
+                    document.getElementById('dragHint').style.display = 'inline';
+                }
+            });
+        }
+        // Google Places Autocomplete for address search
+        let autocomplete;
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('bh-address');
+            if (input && window.google && window.google.maps && window.google.maps.places) {
+                autocomplete = new google.maps.places.Autocomplete(input, { types: ['geocode'] });
+                autocomplete.addListener('place_changed', function() {
+                    const place = autocomplete.getPlace();
+                    if (place.geometry && place.geometry.location) {
+                        bhLatLng = {
+                            lat: place.geometry.location.lat(),
+                            lng: place.geometry.location.lng()
+                        };
+                        document.getElementById('bh_lat').value = bhLatLng.lat;
+                        document.getElementById('bh_lng').value = bhLatLng.lng;
+                        document.getElementById('locationCoords').textContent = `Lat: ${bhLatLng.lat.toFixed(5)}, Lng: ${bhLatLng.lng.toFixed(5)}`;
+                        updateMap();
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
