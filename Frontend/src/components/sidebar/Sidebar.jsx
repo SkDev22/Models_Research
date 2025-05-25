@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {
   IconMenu2,
   IconX,
@@ -22,7 +22,6 @@ import {
   IconCreditCard,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-// import { LuLogOut } from "react-icons/lu";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -98,8 +97,10 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="mb-6 ml-5">
+        <Link to="/">
+          <h1 className="text-left">Home</h1>
+        </Link>
         <h1 className="text-left">Logout</h1>
-        {/* <LuLogOut /> */}
       </div>
 
       {/* Logout Button */}
