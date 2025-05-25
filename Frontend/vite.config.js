@@ -7,12 +7,7 @@ export default defineConfig({
   plugins: [react(), 
     tailwindcss()
   ],
-
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-  
+  optimizeDeps: {
+    include: ['regenerator-runtime/runtime']
+  }  
 })

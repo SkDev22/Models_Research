@@ -3,6 +3,7 @@ import { MapPin, Mic } from "lucide-react";
 import axios from "axios";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
+
 export default function AI_search() {
   const [queryInput, setQueryInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
