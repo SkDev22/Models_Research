@@ -24,7 +24,7 @@ import Analytics from "./pages/Analytics";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import VerifyOTP from "./pages/VerifyOTP";
-// import ViewListings from "./pages/ViewListings";
+import ViewListings from "./pages/ViewListings";
 import EditListing from "./components/EditListing";
 import AI_search from "./components/AI_search";
 import SidebarLayot from "./components/SidebarLayout";
@@ -45,7 +45,7 @@ function App() {
           <Route path="/prediction" element={<SidebarLayot />} />
           <Route path="/services" element={<Services />} />
           {/* <Route path="/view-listings" element={<ViewListings />} /> */}
-          <Route path="/view-listings" element={<UserListingsView />} />
+          <Route path="/view-listings" element={<ViewListings />} />
           <Route path="/edit-listing/:id" element={<EditListing />} />
           <Route path="/user-listing" element={<UserListingsView />} />
           <Route path="/booking-page/:id" element={<BookingPage />} />

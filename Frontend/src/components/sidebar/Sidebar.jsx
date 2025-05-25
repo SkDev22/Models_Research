@@ -83,7 +83,7 @@ const Sidebar = () => {
             isOpen={isOpen}
           />
           <SidebarLink
-            to=""
+            to="/view-listings"
             icon={<IconMessage size={17} />}
             label="My Listings"
             isOpen={isOpen}
