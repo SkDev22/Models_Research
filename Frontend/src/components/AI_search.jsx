@@ -4,6 +4,7 @@ import axios from "axios";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { FaSearch } from "react-icons/fa";
 
 export default function AI_search() {
   const [queryInput, setQueryInput] = useState("");
@@ -99,14 +100,14 @@ export default function AI_search() {
           />
           <button
             className={`p-3 rounded-lg text-white ${
-              listening ? "bg-red-500" : "bg-blue-500"
+              listening ? "bg-red-500" : "bg-[#4a4e69]"
             } hover:bg-opacity-75`}
             onClick={handleVoiceSearch}
           >
             <Mic className="w-5 h-5" />
           </button>
           <button
-            className="bg-yellow-500 p-3 rounded-lg text-white hover:bg-yellow-600"
+            className="bg-[#22223b] p-3 rounded-lg text-white hover:bg-yellow-600"
             onClick={handleSearch}
           >
             🔍
