@@ -74,7 +74,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative w-full mx-auto px-4 pt-20 pb-32">
+      <div className="relative w-full mx-auto px-4 pt-25 pb-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,19 +84,19 @@ const HeroSection = () => {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             We Find The Best Room For You
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Find comfortable and affordable student accommodation near SLIIT
             University. Choose from our selection of well-equipped rooms
             starting from LKR 4,000/month.
           </p>
 
           {/* Video Button */}
-          <button className="inline-flex items-center gap-3 bg-white rounded-full px-6 py-3 text-gray-900 hover:bg-gray-50 transition shadow-md">
+          {/* <button className="inline-flex items-center gap-3 bg-white rounded-full px-6 py-3 text-gray-900 hover:bg-gray-50 transition shadow-md">
             <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow">
               <IconPlayerPlay size={20} className="text-gray-900 ml-0.5" />
             </div>
             <span className="font-medium">Watch Video</span>
-          </button>
+          </button> */}
         </motion.div>
 
         {/* Search */}

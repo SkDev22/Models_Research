@@ -82,7 +82,7 @@ export default function AI_search() {
 
   return (
     <div className="">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6 mb-28">
         <h1 className="text-3xl font-bold text-center mb-6">
           Search for a Boarding House
         </h1>

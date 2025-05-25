@@ -32,14 +32,14 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`fixed top-0 left-0 h-screen transition-all duration-300 ${
+      className={`fixed top-0 left-0 h-screen transition-all text-white duration-300 ${
         isOpen ? "w-50" : "w-16"
-      } bg-gradient-to-b from-amber-100/40 to-amber-300/30 backdrop-blur-lg shadow-lg flex flex-col z-10`}
+      } backdrop-blur-lg bg-[#22223b] shadow-lg flex flex-col z-10`}
     >
       {/* Sidebar Header */}
       <div className="flex items-center justify-between p-4">
         {isOpen && (
-          <h2 className="text-gray-900 font-semibold text-lg">Dashboard</h2>
+          <h2 className="text-white font-semibold text-lg">Dashboard</h2>
         )}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -123,8 +123,8 @@ const SidebarLink = ({ to, icon, label, isOpen, small }) => (
         `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300
         ${
           isActive
-            ? "bg-amber-500 text-white font-semibold scale-105"
-            : "text-gray-900 hover:bg-amber-400/50 hover:text-gray-900 hover:scale-105"
+            ? "bg-[#4a4e69] text-white font-semibold scale-90"
+            : "text-white hover:bg-amber-400/50 hover:text-gray-900 hover:scale-90"
         }`
       }
     >

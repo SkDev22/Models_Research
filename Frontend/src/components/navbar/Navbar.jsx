@@ -16,10 +16,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white/80 backdrop-blur-md py-4 shadow-md">
+    <nav className="bg-[#22223b] backdrop-blur-md py-4 shadow-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="text-2xl font-bold text-gray-900">
+        <NavLink to="/" className="text-2xl font-bold text-white">
           LodgeLink
         </NavLink>
 
@@ -31,8 +31,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `font-medium transition-colors ${
                   isActive
-                    ? "text-amber-500"
-                    : "text-gray-600 hover:text-amber-500"
+                    ? "text-[#9a8c98]"
+                    : "text-white hover:text-[#4a4e69]"
                 }`
               }
             >
@@ -45,8 +45,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `font-medium transition-colors ${
                   isActive
-                    ? "text-amber-500"
-                    : "text-gray-600 hover:text-amber-500"
+                    ? "text-[#4a4e69]"
+                    : "text-white hover:text-[#4a4e69]"
                 }`
               }
             >
@@ -59,8 +59,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `font-medium transition-colors ${
                   isActive
-                    ? "text-amber-500"
-                    : "text-gray-600 hover:text-amber-500"
+                    ? "text-[#4a4e69]"
+                    : "text-white hover:text-[#4a4e69]"
                 }`
               }
             >
@@ -73,8 +73,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `font-medium transition-colors ${
                   isActive
-                    ? "text-amber-500"
-                    : "text-gray-600 hover:text-amber-500"
+                    ? "text-[#4a4e69]"
+                    : "text-white hover:text-[#4a4e69]"
                 }`
               }
             >
@@ -87,8 +87,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `font-medium transition-colors ${
                   isActive
-                    ? "text-amber-500"
-                    : "text-gray-600 hover:text-amber-500"
+                    ? "text-[#4a4e69]"
+                    : "text-white hover:text-[#4a4e69]"
                 }`
               }
             >
@@ -124,7 +124,7 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 to="/signup"
-                className="px-4 py-2 font-medium text-white bg-amber-500 rounded-lg hover:bg-amber-600 transition-colors"
+                className="px-4 py-2 font-medium text-white bg-[#4a4e69] rounded-lg hover:bg-[#9a8c98] transition-colors"
               >
                 Sign Up
               </NavLink>

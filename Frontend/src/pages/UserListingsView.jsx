@@ -542,7 +542,7 @@ const UserListingsView = () => {
 
   // Grid view of all listings
   return (
-    <div className="bg-gray-50 min-h-screen p-6 md:p-10">
+    <div className="min-h-screen p-6 md:p-10">
       {/* <Sidebar /> */}
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">
