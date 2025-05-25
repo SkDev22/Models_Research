@@ -66,11 +66,12 @@ const HeroSection = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="/cOverview.jpg"
+          // src="/cOverview.jpg"
+          src="/image8.jpg"
           alt="Room Background"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-white/95"></div>
+        <div className="absolute inset-0 bg-white/70"></div>
       </div>
 
       {/* Content */}

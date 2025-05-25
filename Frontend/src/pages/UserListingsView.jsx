@@ -559,14 +559,14 @@ const UserListingsView = () => {
               <input
                 type="text"
                 placeholder="Search properties..."
-                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                className="pl-10 pr-4 py-2 w-full bg-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              className="px-4 py-2 bg-[#22223b] text-white rounded-lg hover:bg-[#22223b] transition"
             >
               {showFilters ? "Hide Filters" : "Show Filters"}
             </button>

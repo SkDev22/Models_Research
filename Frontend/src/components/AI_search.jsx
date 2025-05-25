@@ -99,7 +99,7 @@ export default function AI_search() {
             placeholder="Search with location & amenities..."
           />
           <button
-            className={`p-3 rounded-lg text-white ${
+            className={`p-3 rounded-lg text-white cursor-pointer ${
               listening ? "bg-red-500" : "bg-[#4a4e69]"
             } hover:bg-opacity-75`}
             onClick={handleVoiceSearch}
@@ -107,10 +107,10 @@ export default function AI_search() {
             <Mic className="w-5 h-5" />
           </button>
           <button
-            className="bg-[#22223b] p-3 rounded-lg text-white hover:bg-yellow-600"
+            className="bg-[#c9ada7] p-3 rounded-lg text-white hover:bg-[#4a4e69] cursor-pointer"
             onClick={handleSearch}
           >
-            🔍
+            <FaSearch className="w-5 h-5" />
           </button>
         </div>
 
