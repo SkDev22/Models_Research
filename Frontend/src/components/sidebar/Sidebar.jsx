@@ -124,7 +124,7 @@ const SidebarLink = ({ to, icon, label, isOpen, small }) => (
         ${
           isActive
             ? "bg-[#4a4e69] text-white font-semibold scale-90"
-            : "text-white hover:bg-amber-400/50 hover:text-gray-900 hover:scale-90"
+            : "text-white hover:bg-[#4a4e69] hover:text-white hover:scale-90"
         }`
       }
     >

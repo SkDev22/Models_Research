@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import DashboardStats from '../components/dashboardComponents/DashboardStats';
-import BookingList from '../components/dashboardComponents/BookingList';
-import RoomAvailability from '../components/dashboardComponents/RoomAvailability';
-import PaymentOverview from '../components/dashboardComponents/PaymentOverview';
-import Notifications from '../components/dashboardComponents/Notifications';
-import StudentProfile from '../components/dashboardComponents/StudentProfile';
-import Sidebar from '../components/sidebar/Sidebar';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import DashboardStats from "../components/dashboardComponents/DashboardStats";
+import BookingList from "../components/dashboardComponents/BookingList";
+import RoomAvailability from "../components/dashboardComponents/RoomAvailability";
+import PaymentOverview from "../components/dashboardComponents/PaymentOverview";
+import Notifications from "../components/dashboardComponents/Notifications";
+import StudentProfile from "../components/dashboardComponents/StudentProfile";
+import Sidebar from "../components/sidebar/Sidebar";
 
 const BookingDashboard = () => {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Sample user data - in a real app, this would come from your backend
   const userData = {
@@ -19,27 +19,27 @@ const BookingDashboard = () => {
     yearOfStudy: "2nd Year",
     roomNumber: "B-304",
     mealPlan: "Standard",
-    paymentStatus: "Up to date"
+    paymentStatus: "Up to date",
   };
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         duration: 0.5,
         when: "beforeChildren",
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'bookings', label: 'My Bookings', icon: '📝' },
-    { id: 'rooms', label: 'Room Status', icon: '🏠' },
-    { id: 'payments', label: 'Payments', icon: '💰' },
-    { id: 'profile', label: 'Profile', icon: '👤' }
+    { id: "overview", label: "Overview", icon: "📊" },
+    { id: "bookings", label: "My Bookings", icon: "📝" },
+    { id: "rooms", label: "Room Status", icon: "🏠" },
+    { id: "payments", label: "Payments", icon: "💰" },
+    { id: "profile", label: "Profile", icon: "👤" },
   ];
 
   return (
@@ -56,7 +56,9 @@ const BookingDashboard = () => {
       >
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Student Housing Dashboard</h1>
+          <h1 className="text-3xl font-bold text-gray-800">
+            Lodgelink Dashboard
+          </h1>
           <p className="text-gray-600">Welcome back, {userData.name}</p>
         </div>
 
@@ -71,8 +73,8 @@ const BookingDashboard = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
                   activeTab === tab.id
-                    ? 'bg-amber-500 text-white'
-                    : 'hover:bg-amber-100'
+                    ? "bg-[#996493] text-white"
+                    : "hover:bg-[#996493]"
                 }`}
               >
                 <span className="mr-2">{tab.icon}</span>
@@ -87,7 +89,7 @@ const BookingDashboard = () => {
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
             {/* Quick Stats */}
-            {activeTab === 'overview' && (
+            {activeTab === "overview" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -97,7 +99,7 @@ const BookingDashboard = () => {
             )}
 
             {/* Bookings List */}
-            {activeTab === 'bookings' && (
+            {activeTab === "bookings" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -107,7 +109,7 @@ const BookingDashboard = () => {
             )}
 
             {/* Room Status */}
-            {activeTab === 'rooms' && (
+            {activeTab === "rooms" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -117,7 +119,7 @@ const BookingDashboard = () => {
             )}
 
             {/* Payments Overview */}
-            {activeTab === 'payments' && (
+            {activeTab === "payments" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -127,7 +129,7 @@ const BookingDashboard = () => {
             )}
 
             {/* Profile */}
-            {activeTab === 'profile' && (
+            {activeTab === "profile" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -151,10 +153,10 @@ const BookingDashboard = () => {
               <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 {[
-                  { label: 'Report Maintenance Issue', icon: '🔧' },
-                  { label: 'Request Room Change', icon: '🔄' },
-                  { label: 'Update Meal Plan', icon: '🍽️' },
-                  { label: 'Contact Housing Office', icon: '📞' }
+                  { label: "Report Maintenance Issue", icon: "🔧" },
+                  { label: "Request Room Change", icon: "🔄" },
+                  { label: "Update Meal Plan", icon: "🍽️" },
+                  { label: "Contact Housing Office", icon: "📞" },
                 ].map((action, index) => (
                   <motion.button
                     key={index}
