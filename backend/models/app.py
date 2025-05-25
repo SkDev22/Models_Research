@@ -163,17 +163,24 @@ def search_boarding_houses(query):
         results = results[
             results['Amenities'].fillna("").str.lower().str.contains(amenity, na=False)
         ]
-    top = results.head(5)[['Boarding_House_ID', 'Location', 'Amenities']]
+    top = results.head(5)[['Boarding_House_ID', 'Location', 'Amenities', 'Price (LKR)']]
     formatted = [
         {
             "id": row['Boarding_House_ID'],
             "location": row['Location'],
             "amenities": [a.strip() for a in str(row['Amenities']).split(',') if a.strip()],
+            "price": row['Price (LKR)'],
             "score": 1.0
         }
         for _, row in top.iterrows()
     ]
     return formatted
+
+
+
+
+
+
 
 @app.route("/search", methods=["POST"])
 def search_api():
@@ -187,6 +194,8 @@ def search_api():
         print("🔥 ERROR in /search:", e)
         traceback.print_exc()
         return jsonify({"results": [], "error": str(e)}), 500
+
+
 
 # --- Booking Forecast API ---
 @app.route("/predict", methods=["POST"])
