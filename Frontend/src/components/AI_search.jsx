@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 import { MapPin, Mic } from "lucide-react";
 import axios from "axios";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 export default function AI_search() {
   const [queryInput, setQueryInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } =
-    useSpeechRecognition();
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
 
   useEffect(() => {
     if (!listening && transcript.trim()) {
@@ -76,9 +81,11 @@ export default function AI_search() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900">
-      <div className="max-w-4xl mx-auto pt-16 px-6">
-        <h1 className="text-3xl font-bold text-center mb-6">Search for a Boarding House</h1>
+    <div className="">
+      <div className="max-w-4xl mx-auto px-6">
+        <h1 className="text-3xl font-bold text-center mb-6">
+          Search for a Boarding House
+        </h1>
 
         {/* Search Box */}
         <div className="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4">
@@ -91,7 +98,9 @@ export default function AI_search() {
             placeholder="Search with location & amenities..."
           />
           <button
-            className={`p-3 rounded-lg text-white ${listening ? "bg-red-500" : "bg-blue-500"} hover:bg-opacity-75`}
+            className={`p-3 rounded-lg text-white ${
+              listening ? "bg-red-500" : "bg-blue-500"
+            } hover:bg-opacity-75`}
             onClick={handleVoiceSearch}
           >
             <Mic className="w-5 h-5" />
@@ -109,7 +118,9 @@ export default function AI_search() {
           <div className="text-sm text-blue-500 ml-2 mt-2">🎙️ Listening...</div>
         )}
         {transcript && !listening && (
-          <div className="text-sm text-gray-600 mt-2">🗣️ You said: "{transcript}"</div>
+          <div className="text-sm text-gray-600 mt-2">
+            🗣️ You said: "{transcript}"
+          </div>
         )}
 
         {/* Search Results */}
@@ -118,7 +129,10 @@ export default function AI_search() {
             <h2 className="text-2xl font-bold mb-4">Search Results</h2>
             <ul>
               {searchResults.map((house, index) => (
-                <li key={index} className="border-b py-4 flex justify-between items-center">
+                <li
+                  key={index}
+                  className="border-b py-4 flex justify-between items-center"
+                >
                   <div>
                     <strong>{house.id}</strong>
                     <p>{house.location}</p>
