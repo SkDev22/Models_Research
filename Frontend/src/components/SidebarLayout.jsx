@@ -20,6 +20,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Sidebar from "./sidebar/Sidebar";
 
 const { Title, Paragraph } = Typography;
 
@@ -69,7 +70,8 @@ const PredictionDashboard = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ml-50 p-8 lg:p-12 bg-gradient-to-br from-amber-50/30 via-white to-amber-100/30 min-h-screen">
+      <Sidebar />
       <Card title="📅 Forecast Future Bookings and Revenue">
         <div className="flex items-center gap-4 mb-4">
           <DatePicker onChange={setStartDate} className="w-60" />

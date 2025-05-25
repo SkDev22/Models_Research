@@ -1,10 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import axios from 'axios';
-import { FiArrowLeft, FiMapPin, FiHome, FiDollarSign, FiLayers, FiEye, FiSearch, FiCalendar } from 'react-icons/fi';
-import { FaBed, FaBath, FaRulerCombined } from 'react-icons/fa';
-import { FiPhone } from "react-icons/fi"; 
-import { MdClose } from 'react-icons/md';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import {
+  FiArrowLeft,
+  FiMapPin,
+  FiHome,
+  FiDollarSign,
+  FiLayers,
+  FiEye,
+  FiSearch,
+  FiCalendar,
+} from "react-icons/fi";
+import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
+import { FiPhone } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
+import { Navigate } from "react-router-dom";
+// import Sidebar from "../components/sidebar/Sidebar";
 
 const UserListingsView = () => {
   const [listings, setListings] = useState([]);
@@ -18,11 +29,11 @@ const UserListingsView = () => {
   const viewerRef = useRef(null);
 
   // Filter states
-  const [searchQuery, setSearchQuery] = useState('');
-  const [locationFilter, setLocationFilter] = useState('');
-  const [roomTypeFilter, setRoomTypeFilter] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
+  const [roomTypeFilter, setRoomTypeFilter] = useState("");
   const [priceRange, setPriceRange] = useState([0, 10000]);
-  const [datePostedFilter, setDatePostedFilter] = useState('anytime');
+  const [datePostedFilter, setDatePostedFilter] = useState("anytime");
   const [showFilters, setShowFilters] = useState(false);
 
   const containerVariants = {
@@ -31,9 +42,9 @@ const UserListingsView = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        when: "beforeChildren"
-      }
-    }
+        when: "beforeChildren",
+      },
+    },
   };
 
   const itemVariants = {
@@ -42,26 +53,29 @@ const UserListingsView = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/listings');
+        const response = await axios.get("http://localhost:5000/listings");
         setListings(response.data);
         setFilteredListings(response.data);
         setLoading(false);
-        
+
         // Calculate max price for price range slider
-        const maxListingPrice = Math.max(...response.data.map(listing => parseFloat(listing.price) || 0), 10000);
+        const maxListingPrice = Math.max(
+          ...response.data.map((listing) => parseFloat(listing.price) || 0),
+          10000
+        );
         setPriceRange([0, maxListingPrice]);
       } catch (err) {
         setError(err.message);
         setLoading(false);
-        console.error('Error fetching listings:', err);
+        console.error("Error fetching listings:", err);
       }
     };
 
@@ -70,48 +84,73 @@ const UserListingsView = () => {
 
   // Apply filters whenever filter criteria change
   useEffect(() => {
-    const filtered = listings.filter(listing => {
+    const filtered = listings.filter((listing) => {
       // Search query filter (title and description)
-      const matchesSearch = searchQuery === '' || 
-        listing.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        (listing.Description && listing.Description.toLowerCase().includes(searchQuery.toLowerCase()));
-      
+      const matchesSearch =
+        searchQuery === "" ||
+        listing.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (listing.Description &&
+          listing.Description.toLowerCase().includes(
+            searchQuery.toLowerCase()
+          ));
+
       // Location filter
-      const matchesLocation = locationFilter === '' || 
+      const matchesLocation =
+        locationFilter === "" ||
         listing.location.toLowerCase().includes(locationFilter.toLowerCase());
-      
+
       // Room type filter
-      const matchesRoomType = roomTypeFilter === '' || 
-        listing.roomType === roomTypeFilter;
-      
+      const matchesRoomType =
+        roomTypeFilter === "" || listing.roomType === roomTypeFilter;
+
       // Price range filter
       const listingPrice = parseFloat(listing.price) || 0;
-      const matchesPrice = listingPrice >= priceRange[0] && listingPrice <= priceRange[1];
-      
+      const matchesPrice =
+        listingPrice >= priceRange[0] && listingPrice <= priceRange[1];
+
       // Date posted filter
       const listingDate = new Date(listing.createdAt);
       const currentDate = new Date();
-      const daysDifference = Math.floor((currentDate - listingDate) / (1000 * 60 * 60 * 24));
-      
+      const daysDifference = Math.floor(
+        (currentDate - listingDate) / (1000 * 60 * 60 * 24)
+      );
+
       let matchesDate = true;
-      if (datePostedFilter === 'today') {
+      if (datePostedFilter === "today") {
         matchesDate = daysDifference <= 1;
-      } else if (datePostedFilter === 'thisweek') {
+      } else if (datePostedFilter === "thisweek") {
         matchesDate = daysDifference <= 7;
-      } else if (datePostedFilter === 'thismonth') {
+      } else if (datePostedFilter === "thismonth") {
         matchesDate = daysDifference <= 30;
       }
-      
-      return matchesSearch && matchesLocation && matchesRoomType && matchesPrice && matchesDate;
+
+      return (
+        matchesSearch &&
+        matchesLocation &&
+        matchesRoomType &&
+        matchesPrice &&
+        matchesDate
+      );
     });
-    
+
     setFilteredListings(filtered);
-  }, [listings, searchQuery, locationFilter, roomTypeFilter, priceRange, datePostedFilter]);
+  }, [
+    listings,
+    searchQuery,
+    locationFilter,
+    roomTypeFilter,
+    priceRange,
+    datePostedFilter,
+  ]);
 
   // Get unique room types for filter dropdown
-  const roomTypes = [...new Set(listings.map(listing => listing.roomType))].filter(Boolean);
+  const roomTypes = [
+    ...new Set(listings.map((listing) => listing.roomType)),
+  ].filter(Boolean);
   // Get unique locations for filter dropdown
-  const locations = [...new Set(listings.map(listing => listing.location))].filter(Boolean);
+  const locations = [
+    ...new Set(listings.map((listing) => listing.location)),
+  ].filter(Boolean);
 
   const handlePriceRangeChange = (e, index) => {
     const value = parseInt(e.target.value);
@@ -121,12 +160,15 @@ const UserListingsView = () => {
   };
 
   const resetFilters = () => {
-    setSearchQuery('');
-    setLocationFilter('');
-    setRoomTypeFilter('');
-    const maxListingPrice = Math.max(...listings.map(listing => parseFloat(listing.price) || 0), 10000);
+    setSearchQuery("");
+    setLocationFilter("");
+    setRoomTypeFilter("");
+    const maxListingPrice = Math.max(
+      ...listings.map((listing) => parseFloat(listing.price) || 0),
+      10000
+    );
     setPriceRange([0, maxListingPrice]);
-    setDatePostedFilter('anytime');
+    setDatePostedFilter("anytime");
   };
 
   const handleListingSelect = (listing) => {
@@ -168,27 +210,31 @@ const UserListingsView = () => {
         try {
           // Load Three.js if not already loaded
           if (!window.THREE) {
-            await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js');
+            await loadScript(
+              "https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"
+            );
           }
           // Load PANOLENS if not already loaded
           if (!window.PANOLENS) {
-            await loadScript('https://cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js');
+            await loadScript(
+              "https://cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js"
+            );
           }
-          
+
           const panorama = new window.PANOLENS.ImagePanorama(
             `http://localhost:5000/uploads/${selectedListing.panoramaImage}`
           );
-          
+
           viewerRef.current = new window.PANOLENS.Viewer({
             container: panoramaRef.current,
             autoRotate: true,
             autoRotateSpeed: 0.3,
-            controlBar: true
+            controlBar: true,
           });
-          
+
           viewerRef.current.add(panorama);
         } catch (err) {
-          console.error('Error loading panorama:', err);
+          console.error("Error loading panorama:", err);
         }
       };
 
@@ -198,7 +244,7 @@ const UserListingsView = () => {
 
   const loadScript = (src) => {
     return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       script.src = src;
       script.onload = resolve;
       script.onerror = reject;
@@ -216,9 +262,7 @@ const UserListingsView = () => {
 
   if (error) {
     return (
-      <div className="p-8 text-red-500">
-        Error loading listings: {error}
-      </div>
+      <div className="p-8 text-red-500">Error loading listings: {error}</div>
     );
   }
 
@@ -226,7 +270,7 @@ const UserListingsView = () => {
   if (selectedListing) {
     const images = Object.values(selectedListing.viewImages || {});
     const imageKeys = Object.keys(selectedListing.viewImages || {});
-    
+
     return (
       <div className="bg-gray-50 min-h-screen">
         {/* Back button */}
@@ -240,13 +284,13 @@ const UserListingsView = () => {
         {/* Main content */}
         <div className="max-w-6xl mx-auto px-4 py-8">
           {/* Image gallery */}
-         <div className="relative bg-gray-200 rounded-xl shadow-inner overflow-hidden mb-8 border border-gray-300">
+          <div className="relative bg-gray-200 rounded-xl shadow-inner overflow-hidden mb-8 border border-gray-300">
             {images.length > 0 ? (
               <>
                 <img
-                    src={`http://localhost:5000/uploads/${images[activeImage]}`}
-                    alt={`${imageKeys[activeImage]} view`}
-                    className="w-full max-h-[500px] object-contain"
+                  src={`http://localhost:5000/uploads/${images[activeImage]}`}
+                  alt={`${imageKeys[activeImage]} view`}
+                  className="w-full max-h-[500px] object-contain"
                 />
 
                 {images.length > 1 && (
@@ -255,16 +299,38 @@ const UserListingsView = () => {
                       onClick={handlePrevImage}
                       className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white transition"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
                       </svg>
                     </button>
                     <button
                       onClick={handleNextImage}
                       className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white transition"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </button>
                   </>
@@ -292,7 +358,11 @@ const UserListingsView = () => {
                 <button
                   key={index}
                   onClick={() => setActiveImage(index)}
-                  className={`flex-shrink-0 w-20 h-20 rounded overflow-hidden border-2 ${activeImage === index ? 'border-blue-500' : 'border-transparent'}`}
+                  className={`flex-shrink-0 w-20 h-20 rounded overflow-hidden border-2 ${
+                    activeImage === index
+                      ? "border-blue-500"
+                      : "border-transparent"
+                  }`}
                 >
                   <img
                     src={`http://localhost:5000/uploads/${img}`}
@@ -308,15 +378,18 @@ const UserListingsView = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">{selectedListing.title}</h1>
+                <h1 className="text-3xl font-bold text-gray-800 mb-2">
+                  {selectedListing.title}
+                </h1>
                 <div className="flex items-center text-gray-600 mb-4">
                   <FiMapPin className="mr-2" />
                   <span>{selectedListing.location}</span>
                 </div>
-                
-                <p className="text-gray-700 mb-6">{selectedListing.Description}</p>
 
-                
+                <p className="text-gray-700 mb-6">
+                  {selectedListing.Description}
+                </p>
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                   {/* <div className="flex items-center">
                     <FaBed className="text-blue-500 mr-2" size={20} />
@@ -343,7 +416,9 @@ const UserListingsView = () => {
                     <FiHome className="text-blue-500 mr-2" size={20} />
                     <div>
                       <p className="text-gray-500 text-sm">Type</p>
-                      <p className="font-semibold">{selectedListing.roomType || 'N/A'}</p>
+                      <p className="font-semibold">
+                        {selectedListing.roomType || "N/A"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -351,11 +426,13 @@ const UserListingsView = () => {
                 {/* Amenities */}
                 {selectedListing.amenities?.length > 0 && (
                   <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">Amenities</h3>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      Amenities
+                    </h3>
                     <div className="flex flex-wrap gap-3">
                       {selectedListing.amenities.map((amenity, index) => (
-                        <span 
-                          key={index} 
+                        <span
+                          key={index}
                           className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm"
                         >
                           {amenity}
@@ -368,11 +445,13 @@ const UserListingsView = () => {
                 {/* Detected Objects */}
                 {selectedListing.detectedObjects?.length > 0 && (
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">Included Items</h3>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      Included Items
+                    </h3>
                     <div className="flex flex-wrap gap-3">
                       {selectedListing.detectedObjects.map((item, index) => (
-                        <span 
-                          key={index} 
+                        <span
+                          key={index}
                           className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm"
                         >
                           {item}
@@ -391,7 +470,9 @@ const UserListingsView = () => {
                   <h3 className="text-2xl font-bold text-gray-800">
                     <span className="inline mr-1">Rs.</span>
                     {selectedListing.price}
-                    <span className="text-lg font-normal text-gray-600">/month</span>
+                    <span className="text-lg font-normal text-gray-600">
+                      /month
+                    </span>
                   </h3>
                   {selectedListing.available && (
                     <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
@@ -403,9 +484,13 @@ const UserListingsView = () => {
                 <div className="mb-4 p-4 bg-blue-50 rounded-lg">
                   <div className="flex items-center text-gray-700 mb-2">
                     <FiPhone className="mr-3 text-blue-500" />
-                    <span className="font-medium">{selectedListing.phoneNumber}</span>
+                    <span className="font-medium">
+                      {selectedListing.phoneNumber}
+                    </span>
                   </div>
-                  <p className="text-sm text-gray-500">Call or message the landlord directly</p>
+                  <p className="text-sm text-gray-500">
+                    Call or message the landlord directly
+                  </p>
                 </div>
 
                 <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition mb-4">
@@ -415,11 +500,16 @@ const UserListingsView = () => {
                 <div className="space-y-3">
                   <div className="flex items-center text-gray-600">
                     <FiLayers className="mr-3 text-blue-500" />
-                    <span>Posted: {new Date(selectedListing.createdAt).toLocaleDateString()}</span>
+                    <span>
+                      Posted:{" "}
+                      {new Date(selectedListing.createdAt).toLocaleDateString()}
+                    </span>
                   </div>
                   <div className="flex items-center text-gray-600">
                     <FiHome className="mr-3 text-blue-500" />
-                    <span>Property ID: {selectedListing._id.slice(-6).toUpperCase()}</span>
+                    <span>
+                      Property ID: {selectedListing._id.slice(-6).toUpperCase()}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -442,10 +532,7 @@ const UserListingsView = () => {
               >
                 <MdClose size={24} />
               </button>
-              <div 
-                ref={panoramaRef} 
-                className="w-full h-full max-w-6xl"
-              />
+              <div ref={panoramaRef} className="w-full h-full max-w-6xl" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -456,9 +543,12 @@ const UserListingsView = () => {
   // Grid view of all listings
   return (
     <div className="bg-gray-50 min-h-screen p-6 md:p-10">
+      {/* <Sidebar /> */}
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Available Properties</h1>
-        
+        <h1 className="text-3xl font-bold text-gray-800 mb-8">
+          Available Properties
+        </h1>
+
         {/* Search and Filter Section */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row gap-4 mb-4">
@@ -478,7 +568,7 @@ const UserListingsView = () => {
               onClick={() => setShowFilters(!showFilters)}
               className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition"
             >
-              {showFilters ? 'Hide Filters' : 'Show Filters'}
+              {showFilters ? "Hide Filters" : "Show Filters"}
             </button>
           </div>
 
@@ -487,7 +577,9 @@ const UserListingsView = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {/* Location Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Location
+                  </label>
                   <select
                     className="w-full border border-gray-300 rounded-md p-2"
                     value={locationFilter}
@@ -495,14 +587,18 @@ const UserListingsView = () => {
                   >
                     <option value="">All Locations</option>
                     {locations.map((location, index) => (
-                      <option key={index} value={location}>{location}</option>
+                      <option key={index} value={location}>
+                        {location}
+                      </option>
                     ))}
                   </select>
                 </div>
 
                 {/* Room Type Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Room Type</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Room Type
+                  </label>
                   <select
                     className="w-full border border-gray-300 rounded-md p-2"
                     value={roomTypeFilter}
@@ -510,7 +606,9 @@ const UserListingsView = () => {
                   >
                     <option value="">All Types</option>
                     {roomTypes.map((type, index) => (
-                      <option key={index} value={type}>{type}</option>
+                      <option key={index} value={type}>
+                        {type}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -542,7 +640,9 @@ const UserListingsView = () => {
 
                 {/* Date Posted Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Date Posted</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Date Posted
+                  </label>
                   <select
                     className="w-full border border-gray-300 rounded-md p-2"
                     value={datePostedFilter}
@@ -570,8 +670,10 @@ const UserListingsView = () => {
 
         {filteredListings.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-xl shadow">
-            <p className="text-gray-500 text-lg">No properties match your search criteria.</p>
-            <button 
+            <p className="text-gray-500 text-lg">
+              No properties match your search criteria.
+            </p>
+            <button
               onClick={resetFilters}
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
@@ -605,7 +707,9 @@ const UserListingsView = () => {
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                    <h2 className="text-white font-bold text-xl">{listing.title}</h2>
+                    <h2 className="text-white font-bold text-xl">
+                      {listing.title}
+                    </h2>
                     <p className="text-white/90">{listing.location}</p>
                   </div>
                 </div>
@@ -613,7 +717,10 @@ const UserListingsView = () => {
                 <div className="p-4">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-blue-600 font-bold text-xl">
-                      Rs.{listing.price}<span className="text-gray-500 text-sm font-normal">/mo</span>
+                      Rs.{listing.price}
+                      <span className="text-gray-500 text-sm font-normal">
+                        /mo
+                      </span>
                     </span>
                     <span className="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
                       {listing.roomType}
@@ -622,23 +729,28 @@ const UserListingsView = () => {
 
                   <div className="flex justify-between text-gray-600 text-sm mb-3">
                     <span className="flex items-center">
-                      <FaBed className="mr-1" /> {listing.bedrooms || 'N/A'} beds
+                      <FaBed className="mr-1" /> {listing.bedrooms || "N/A"}{" "}
+                      beds
                     </span>
                     <span className="flex items-center">
-                      <FaBath className="mr-1" /> {listing.bathrooms || 'N/A'} baths
+                      <FaBath className="mr-1" /> {listing.bathrooms || "N/A"}{" "}
+                      baths
                     </span>
                     <span className="flex items-center">
-                      <FaRulerCombined className="mr-1" /> {listing.area ? `${listing.area} sqft` : 'N/A'}
+                      <FaRulerCombined className="mr-1" />{" "}
+                      {listing.area ? `${listing.area} sqft` : "N/A"}
                     </span>
                   </div>
 
-                  <p className="text-gray-600 text-sm line-clamp-2 mb-3">{listing.Description}</p>
+                  <p className="text-gray-600 text-sm line-clamp-2 mb-3">
+                    {listing.Description}
+                  </p>
 
                   {listing.amenities?.length > 0 && (
                     <div className="flex flex-wrap gap-1">
                       {listing.amenities.slice(0, 3).map((amenity, index) => (
-                        <span 
-                          key={index} 
+                        <span
+                          key={index}
                           className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
                         >
                           {amenity}

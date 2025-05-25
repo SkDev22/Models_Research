@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { FiEye, FiEdit2, FiTrash2, FiRotateCw } from 'react-icons/fi';
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { FiEye, FiEdit2, FiTrash2, FiRotateCw } from "react-icons/fi";
+import Sidebar from "../components/sidebar/Sidebar";
 
 const ViewListings = () => {
   const [listings, setListings] = useState([]);
@@ -20,9 +21,9 @@ const ViewListings = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        when: "beforeChildren"
-      }
-    }
+        when: "beforeChildren",
+      },
+    },
   };
 
   const itemVariants = {
@@ -31,21 +32,21 @@ const ViewListings = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/listings');
+        const response = await axios.get("http://localhost:5000/listings");
         setListings(response.data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
-        console.error('Error fetching listings:', err);
+        console.error("Error fetching listings:", err);
       }
     };
 
@@ -57,12 +58,16 @@ const ViewListings = () => {
       const loadPanolens = async () => {
         try {
           // Load Three.js
-          await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js');
+          await loadScript(
+            "https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"
+          );
           // Load PANOLENS
-          await loadScript('https://cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js');
+          await loadScript(
+            "https://cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js"
+          );
           setIsViewerLoaded(true);
         } catch (err) {
-          console.error('Error loading panorama scripts:', err);
+          console.error("Error loading panorama scripts:", err);
         }
       };
 
@@ -78,7 +83,7 @@ const ViewListings = () => {
 
   const loadScript = (src) => {
     return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       script.src = src;
       script.onload = resolve;
       script.onerror = reject;
@@ -97,18 +102,18 @@ const ViewListings = () => {
       autoRotate: true,
       autoRotateSpeed: 0.3,
       controlBar: true,
-      controlButtons: ['fullscreen', 'zoom', 'video']
+      controlButtons: ["fullscreen", "zoom", "video"],
     });
     viewerRef.current.add(panorama);
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this listing?')) {
+    if (window.confirm("Are you sure you want to delete this listing?")) {
       try {
         await axios.delete(`http://localhost:5000/listings/${id}`);
-        setListings(listings.filter(listing => listing._id !== id));
+        setListings(listings.filter((listing) => listing._id !== id));
       } catch (err) {
-        console.error('Error deleting listing:', err);
+        console.error("Error deleting listing:", err);
       }
     }
   };
@@ -135,18 +140,17 @@ const ViewListings = () => {
 
   if (error) {
     return (
-      <div className="p-8 text-red-500">
-        Error loading listings: {error}
-      </div>
+      <div className="p-8 text-red-500">Error loading listings: {error}</div>
     );
   }
 
   return (
-    <div className="p-6 md:p-10">
+    <div className="p-6 md:p-10 ml-50">
+      <Sidebar />
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">All Listings</h1>
         <button
-          onClick={() => navigate('/listings')}
+          onClick={() => navigate("/listings")}
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
         >
           Create New Listing
@@ -162,10 +166,7 @@ const ViewListings = () => {
             >
               &times;
             </button>
-            <div 
-              ref={panoramaRef} 
-              className="w-full h-full"
-            />
+            <div ref={panoramaRef} className="w-full h-full" />
           </div>
         </div>
       )}
@@ -191,7 +192,9 @@ const ViewListings = () => {
                 />
               )}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                <h2 className="text-white font-bold text-xl">{listing.title}</h2>
+                <h2 className="text-white font-bold text-xl">
+                  {listing.title}
+                </h2>
                 <p className="text-white/90">{listing.location}</p>
               </div>
             </div>
@@ -206,16 +209,20 @@ const ViewListings = () => {
                 </span>
               </div>
 
-              <p className="text-gray-600 mt-2 line-clamp-2">{listing.Description}</p>
+              <p className="text-gray-600 mt-2 line-clamp-2">
+                {listing.Description}
+              </p>
 
               {/* Detected Objects */}
               {listing.detectedObjects?.length > 0 && (
                 <div className="mt-3">
-                  <h3 className="text-sm font-semibold text-gray-700 mb-1">Household Items:</h3>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-1">
+                    Household Items:
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {listing.detectedObjects.map((obj, index) => (
-                      <span 
-                        key={index} 
+                      <span
+                        key={index}
                         className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs"
                       >
                         {obj}
@@ -227,11 +234,13 @@ const ViewListings = () => {
 
               {/* Amenities */}
               <div className="mt-3">
-                <h3 className="text-sm font-semibold text-gray-700 mb-1">Amenities:</h3>
+                <h3 className="text-sm font-semibold text-gray-700 mb-1">
+                  Amenities:
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {listing.amenities?.map((amenity) => (
-                    <span 
-                      key={amenity} 
+                    <span
+                      key={amenity}
                       className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
                     >
                       {amenity}
@@ -241,12 +250,12 @@ const ViewListings = () => {
               </div>
 
               <div className="flex justify-between mt-4 pt-3 border-t">
-              <button
-                onClick={() => navigate(`/edit-listing/${listing._id}`)}
-                className="flex items-center text-blue-600 hover:text-blue-800 text-sm"
-              >
-                <FiEdit2 className="mr-1" /> Edit
-              </button>
+                <button
+                  onClick={() => navigate(`/edit-listing/${listing._id}`)}
+                  className="flex items-center text-blue-600 hover:text-blue-800 text-sm"
+                >
+                  <FiEdit2 className="mr-1" /> Edit
+                </button>
 
                 <div className="flex space-x-3">
                   {listing.panoramaImage && (
@@ -269,16 +278,21 @@ const ViewListings = () => {
             </div>
 
             <div className="px-4 pb-4 flex space-x-2 overflow-x-auto">
-              {Object.entries(listing.viewImages || {}).map(([view, filename]) => (
-                <div key={view} className="flex-shrink-0 w-16 h-16 rounded overflow-hidden border border-gray-200">
-                  <img
-                    src={`http://localhost:5000/uploads/${filename}`}
-                    alt={`${view} view`}
-                    className="w-full h-full object-cover"
-                    title={view}
-                  />
-                </div>
-              ))}
+              {Object.entries(listing.viewImages || {}).map(
+                ([view, filename]) => (
+                  <div
+                    key={view}
+                    className="flex-shrink-0 w-16 h-16 rounded overflow-hidden border border-gray-200"
+                  >
+                    <img
+                      src={`http://localhost:5000/uploads/${filename}`}
+                      alt={`${view} view`}
+                      className="w-full h-full object-cover"
+                      title={view}
+                    />
+                  </div>
+                )
+              )}
             </div>
           </motion.div>
         ))}
@@ -286,7 +300,9 @@ const ViewListings = () => {
 
       {listings.length === 0 && (
         <div className="text-center py-10">
-          <p className="text-gray-500 text-lg">No listings found. Create one to get started!</p>
+          <p className="text-gray-500 text-lg">
+            No listings found. Create one to get started!
+          </p>
         </div>
       )}
     </div>

@@ -24,7 +24,7 @@ import Analytics from "./pages/Analytics";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import VerifyOTP from "./pages/VerifyOTP";
-import ViewListings from "./pages/ViewListings";
+// import ViewListings from "./pages/ViewListings";
 import EditListing from "./components/EditListing";
 import AI_search from "./components/AI_search";
 import SidebarLayot from "./components/SidebarLayout";
@@ -36,14 +36,16 @@ function App() {
   return (
     <>
       <Router>
+        {" "}
         <Routes>
           {/* Main Routes */}
           <Route path="/" element={<Home />} />
-          <Route path="/ai-search" element={<AI_search />} /> 
+          <Route path="/ai-search" element={<AI_search />} />
           <Route path="/dynamic-pricing" element={<DynamicPricingApp />} />
-          <Route path="/prediction" element={<SidebarLayot/>} />  
+          <Route path="/prediction" element={<SidebarLayot />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/view-listings" element={<ViewListings />} />
+          {/* <Route path="/view-listings" element={<ViewListings />} /> */}
+          <Route path="/view-listings" element={<UserListingsView />} />
           <Route path="/edit-listing/:id" element={<EditListing />} />
           <Route path="/user-listing" element={<UserListingsView />} />
           <Route path="/booking-page/:id" element={<BookingPage />} />
@@ -53,7 +55,6 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/dashboard" element={<BookingDashboard />} />
           <Route path="/profile" element={<Profile />}>
-
             <Route index element={<PersonalInfo />} />
             <Route path="security" element={<SecuritySettings />} />
             <Route path="preferences" element={<Preferences />} />
@@ -78,7 +79,6 @@ function App() {
       </Router>
     </>
   );
-  k
 }
 
 export default App;

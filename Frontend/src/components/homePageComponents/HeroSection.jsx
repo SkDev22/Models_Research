@@ -19,6 +19,7 @@ import {
 } from "@tabler/icons-react";
 
 import AI_search from "../AI_search";
+import UserListingsView from "../../pages/UserListingsView";
 
 const amenityIcons = {
   wifi: <IconWifi stroke={2} className="text-[10px] mt-1" />,
@@ -101,66 +102,8 @@ const HeroSection = () => {
         {/* Search */}
         <AI_search />
 
-        <div className="px-20 flex flex-wrap justify-baseline gap-5">
-          {Array.isArray(listings) &&
-            listings.map((listing) => (
-              <Link to={`/booking-page/${listing._id}`}>
-                <div
-                  key={listing._id} // Use listing._id instead of listing.id (MongoDB uses _id)
-                  className="w-[300px] h-[320px] p-4 rounded-lg shadow-md shadow-slate-500 mt-16"
-                >
-                  <div>
-                    {listing.images && listing.images.length > 0 ? (
-                      <img
-                        src={`http://localhost:5000/images/${listing.images[0]}`}
-                        alt="Listing Image"
-                        className="rounded-xl w-full h-[150px] object-cover"
-                      />
-                    ) : (
-                      <p className="text-gray-500">No image available</p>
-                    )}
-                  </div>
-
-                  {/* Render title and price */}
-                  <div className="">
-                    <h1 className="text-xl font-bold mt-2">{listing.title}</h1>
-                  </div>
-
-                  {/* Render location */}
-                  <div className="flex justify-between items-center mt-3">
-                    <h1 className="flex justify-start gap-2 items-center mt-2">
-                      <IconDirections stroke={2} className="text-red-700" />
-                      {listing.location}
-                    </h1>
-                    <h1 className=" text-right">
-                      <span className="text-red-700 font-semibold">
-                        Rs.{listing.price}
-                      </span>{" "}
-                      month
-                    </h1>
-                  </div>
-                  <ul>
-                    <p className="flex justify-baseline items-center gap-3 flex-wrap">
-                      {listing.amenities.map((amenity, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-start gap-2 items-center mt-2"
-                        >
-                          {amenityIcons[amenity] || (
-                            <IconPointFilled
-                              stroke={2}
-                              className="text-[10px] mt-1"
-                            />
-                          )}
-                          {amenity}
-                        </li>
-                      ))}
-                    </p>
-                  </ul>
-                </div>
-              </Link>
-            ))}
-        </div>
+        {/* Listings */}
+        <UserListingsView />
       </div>
     </div>
   );
