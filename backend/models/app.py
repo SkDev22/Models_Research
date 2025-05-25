@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import joblib
 from datetime import datetime, timedelta
+from pymongo import MongoClient
 
 # Import your pricing_model module with classes and functions
 from pricing_model import (
@@ -16,6 +17,7 @@ from pricing_model import (
 
 app = Flask(__name__, static_url_path='')
 CORS(app, origins=["http://localhost:5173"])  # adjust origin as needed
+
 
 # Base directory for models and data
 models_dir = os.path.dirname(__file__)
@@ -28,13 +30,19 @@ amenity_model = joblib.load(os.path.join(models_dir, "amenity_model.pkl"))
 mlb = joblib.load(os.path.join(models_dir, "mlb.pkl"))
 
 # Load dataset for AI Search
-df = pd.read_csv(os.path.join(models_dir, "Dataset_Cleaned.csv"))
-df['Price_Category'] = df['Price (LKR)'].apply(
-    lambda x: 'cheap' if x < 10000 else 'affordable' if x < 20000 else 'expensive'
-)
-df['Amenities_List'] = df['Amenities'].fillna("").apply(
-    lambda x: [a.strip().lower() for a in str(x).split(',') if a.strip()]
-)
+# df = pd.read_csv(os.path.join(models_dir, "Dataset_Cleaned.csv"))
+# df['Price_Category'] = df['Price (LKR)'].apply(
+#     lambda x: 'cheap' if x < 10000 else 'affordable' if x < 20000 else 'expensive'
+# )
+# df['Amenities_List'] = df['Amenities'].fillna("").apply(
+#     lambda x: [a.strip().lower() for a in str(x).split(',') if a.strip()]
+# )
+
+# MongoDB connection URI and client setup
+MONGO_URI = "mongodb+srv://kavindulakshanperera12:858HJPfB9eafYlV1@clusterlodegelink.r9zvg.mongodb.net/LodgeLink?retryWrites=true&w=majority&appName=ClusterLodegeLink"
+client = MongoClient(MONGO_URI)
+db = client['LodgeLink']
+collection = db['boardings']
 
 # === Load Booking Forecast Models ===
 booking_model_path = os.path.join(models_dir, "booking_model.pkl")
@@ -81,6 +89,15 @@ def extract_filters_custom_model(query, threshold=0.3):
         "price_category": price,
         "amenities": pred_amenities
     }
+
+def price_category_to_range(category):
+    if category == "cheap":
+        return {"$lt": 8000}
+    elif category == "affordable":
+        return {"$gte": 10000, "$lt": 35000}
+    else:  # expensive
+        return {"$gte": 35000}
+    
 
 def get_distance_category(distance):
     """Categorize distance and return category name and price factor."""
@@ -155,46 +172,59 @@ def get_seasonal_reason(month):
 
 def search_boarding_houses(query):
     filters = extract_filters_custom_model(query)
-    results = df[
-        df['Location'].str.lower().str.contains(filters['location'].lower(), na=False) &
-        df['Price_Category'].str.lower().str.contains(filters['price_category'].lower(), na=False)
-    ]
-    for amenity in filters['amenities']:
-        results = results[
-            results['Amenities'].fillna("").str.lower().str.contains(amenity, na=False)
-        ]
-    top = results.head(5)[['Boarding_House_ID', 'Location', 'Amenities', 'Price (LKR)']]
-    formatted = [
-        {
-            "id": row['Boarding_House_ID'],
-            "location": row['Location'],
-            "amenities": [a.strip() for a in str(row['Amenities']).split(',') if a.strip()],
-            "price": row['Price (LKR)'],
-            "score": 1.0
-        }
-        for _, row in top.iterrows()
-    ]
+    
+    mongo_query = {
+        "location": {"$regex": filters['location'], "$options": "i"},
+        "price": price_category_to_range(filters['price_category']),
+    }
+    if filters['amenities']:
+        mongo_query["amenities"] = {"$all": filters['amenities']}
+
+    print("MongoDB Query:", mongo_query)  # Debug: see query
+
+    results = list(collection.find(mongo_query).limit(5))
+
+    formatted = []
+    for r in results:
+        formatted.append({
+            "id": str(r.get("_id")),
+            "location": r.get("location", ""),
+            "price": r.get("price", 0),
+            "amenities": r.get("amenities", []),
+            "title": r.get("title", ""),
+            "description": r.get("Description", ""),
+            # Add any other fields you want to send to frontend
+        })
     return formatted
 
 
 
-
-
-
-
+# @app.route("/search", methods=["POST"])
+# def search_api():
+#     try:
+#         query = request.json.get("query", "").strip()
+#         if not query:
+#             return jsonify({"results": []}), 400
+#         results = search_boarding_houses(query)
+#         return jsonify({"results": results}), 200
+#     except Exception as e:
+#         print("🔥 ERROR in /search:", e)
+#         traceback.print_exc()
+#         return jsonify({"results": [], "error": str(e)}), 500
 @app.route("/search", methods=["POST"])
-def search_api():
+def search():
     try:
         query = request.json.get("query", "").strip()
         if not query:
             return jsonify({"results": []}), 400
         results = search_boarding_houses(query)
+        if len(results) == 0:
+            return jsonify({"results": [], "message": "No matching boarding houses found."}), 200
         return jsonify({"results": results}), 200
     except Exception as e:
-        print("🔥 ERROR in /search:", e)
+        print("🔥 ERROR in /search:", str(e))
         traceback.print_exc()
         return jsonify({"results": [], "error": str(e)}), 500
-
 
 
 # --- Booking Forecast API ---
