@@ -83,13 +83,13 @@ export default function AI_search() {
 
   return (
     <div className="">
-      <div className="max-w-4xl mx-auto px-6 mb-28">
+      <div className="w-full mx-auto px-10 mb-28">
         <h1 className="text-3xl font-bold text-center mb-6">
           Search for a Boarding House
         </h1>
 
         {/* Search Box */}
-        <div className="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4">
+        <div className="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4 w-[50%] mx-auto">
           <MapPin className="text-gray-400" />
           <input
             type="text"
@@ -126,24 +126,25 @@ export default function AI_search() {
 
         {/* Search Results */}
         {searchResults.length > 0 && (
-          <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
+          <div className="mt-8 bg-transparent p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Search Results</h2>
-            <ul>
+            <ul className="flex justify-between gap-4">
               {searchResults.map((house, index) => (
                 <li
                   key={index}
-                  className="border-b py-4 flex justify-between items-center"
+                  className="bg-white w-[400px] p-4 rounded-xl flex justify-between items-center"
                 >
                   <div>
-                    <strong>{house.id}</strong>
+                    <strong>{house.price} LKR</strong>
+                    {/* <strong>{house.Ratings}</strong> */}
                     <p>{house.location}</p>
                     <span className="text-gray-500">
                       Amenities: {house.amenities.join(", ")}
                     </span>
                   </div>
-                  <span className="bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm">
+                  {/* <span className="bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm">
                     Score: {house.score.toFixed(2)}
-                  </span>
+                  </span> */}
                 </li>
               ))}
             </ul>
