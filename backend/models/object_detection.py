@@ -6,6 +6,7 @@ from keras.models import load_model
 from PIL import Image, ImageOps
 import numpy as np
 
+
 def predict_image(image_path):
     try:
         # Load model (update path as needed)

@@ -623,7 +623,22 @@ def search_boarding_houses(query):
     results = list(collection.find(mongo_query).limit(5))
 
     formatted = []
+    # for r in results:
+    #     formatted.append({
+    #         "id": str(r.get("_id")),
+    #         "location": r.get("location", ""),
+    #         "price": r.get("price", 0),
+    #         "amenities": r.get("amenities", []),
+    #         "title": r.get("title", ""),
+    #         "description": r.get("Description", ""),
+    #         # Add any other fields you want to send to frontend
+    #     })
     for r in results:
+        image_filename = None
+        if 'viewImages' in r and r['viewImages'] and 'front' in r['viewImages']:
+            image_filename = r['viewImages']['front']
+        image_url = f"http://localhost:5000/uploads/{image_filename}" if image_filename else None
+
         formatted.append({
             "id": str(r.get("_id")),
             "location": r.get("location", ""),
@@ -631,8 +646,12 @@ def search_boarding_houses(query):
             "amenities": r.get("amenities", []),
             "title": r.get("title", ""),
             "description": r.get("Description", ""),
+            "viewImages": {
+                "front": image_url
+            }
             # Add any other fields you want to send to frontend
         })
+
     return formatted
 
 
