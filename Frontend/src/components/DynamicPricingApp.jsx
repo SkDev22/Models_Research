@@ -252,7 +252,7 @@ function DynamicPricingApp() {
                 </h5>
                 <form onSubmit={handleSubmit}>
                   {/* Boarding House Info */}
-                  <div className="mb-6">
+                  {/* <div className="mb-6">
                     <h6 className="text-lg font-medium mb-3">
                       Boarding House Info
                     </h6>
@@ -294,7 +294,7 @@ function DynamicPricingApp() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* Room Type Selection */}
                   <div className="mb-6">
                     <h6 className="text-lg font-medium mb-3">Room Type</h6>
@@ -383,7 +383,7 @@ function DynamicPricingApp() {
                         </div>
                       </div>
                       <div>
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Safety Score (1-10)
                           </label>
@@ -397,7 +397,7 @@ function DynamicPricingApp() {
                             onChange={handleChange}
                             required
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -432,7 +432,7 @@ function DynamicPricingApp() {
                     </div>
                   </div>
                   {/* Reviews */}
-                  <div className="mb-6">
+                  {/* <div className="mb-6">
                     <h6 className="text-lg font-medium mb-3">Reviews</h6>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                       <div>
@@ -486,7 +486,7 @@ function DynamicPricingApp() {
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* Map & Location */}
                   <div className="mb-6">
                     <h6 className="text-lg font-medium mb-3">
