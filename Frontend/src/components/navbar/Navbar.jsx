@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className="bg-[#22223b] backdrop-blur-md py-4 shadow-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="text-2xl font-bold text-white">
+        <NavLink to="/home" className="text-2xl font-bold text-white">
           LodgeLink
         </NavLink>
 
@@ -29,7 +29,7 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center space-x-8">
           <li>
             <NavLink
-              to="/"
+              to="/home"
               className={({ isActive }) =>
                 `font-medium transition-colors ${
                   isActive
