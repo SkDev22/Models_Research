@@ -39,7 +39,8 @@ function App() {
         {" "}
         <Routes>
           {/* Main Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/ai-search" element={<AI_search />} />
           <Route path="/dynamic-pricing" element={<DynamicPricingApp />} />
           <Route path="/prediction" element={<SidebarLayot />} />

@@ -19,7 +19,7 @@ const Login = () => {
         }
       );
       setMessage(response.data.message);
-      navigate("/"); // Redirect to home or dashboard after login
+      navigate("/home"); // Redirect to home or dashboard after login
     } catch (error) {
       setMessage(error.response?.data?.message || "An error occurred");
     }

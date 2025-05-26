@@ -97,7 +97,7 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="mb-6 ml-5">
-        <Link to="/">
+        <Link to="/home">
           <h1 className="text-left">Home</h1>
         </Link>
         <h1 className="text-left">Logout</h1>

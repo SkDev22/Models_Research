@@ -3,6 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 // import AuthContext from "../../context/AuthContext";
 import { AuthContext } from "../../context/AuthContext";
+// import { RxAvatar } from "react-icons/rx";
+import { IconUserCircle } from "@tabler/icons-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -107,27 +109,28 @@ const Navbar = () => {
               >
                 Dashboard
               </NavLink>
-              <button
+              {/* <button
                 onClick={handleLogout}
                 className="px-4 py-2 font-medium text-white bg-amber-500 rounded-lg hover:bg-amber-600 transition-colors"
               >
                 Logout
-              </button>
+              </button> */}
             </>
           ) : (
             <>
               <NavLink
-                to="/login"
+                to="/profile"
                 className="px-4 py-2 font-medium text-white hover:text-[#4a4e69] transition-colors"
               >
-                Log In
+                {/* <RxAvatar /> */}
+                <IconUserCircle stroke={2} className="text-lg" />
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/signup"
                 className="px-4 py-2 font-medium text-white bg-[#4a4e69] rounded-lg hover:bg-[#9a8c98] transition-colors"
               >
                 Sign Up
-              </NavLink>
+              </NavLink> */}
             </>
           )}
         </div>
