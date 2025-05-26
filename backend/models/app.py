@@ -178,7 +178,7 @@ def search_boarding_houses(query):
         "price": price_category_to_range(filters['price_category']),
     }
     if filters['amenities']:
-        mongo_query["amenities"] = {"$all": filters['amenities']}
+        mongo_query["amenities"] = {"$in": filters['amenities']}
 
     print("MongoDB Query:", mongo_query)  # Debug: see query
 
