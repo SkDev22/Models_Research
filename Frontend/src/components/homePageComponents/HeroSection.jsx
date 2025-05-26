@@ -29,18 +29,7 @@ const amenityIcons = {
 };
 
 const HeroSection = () => {
-  // const navigate = useNavigate();
   const [listings, setListings] = useState({});
-  // const [searchParams, setSearchParams] = useState({
-  //   location: "",
-  //   beds: "",
-  //   date: "",
-  // });
-
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   navigate("/booking-page", { state: { searchParams } });
-  // };
 
   useEffect(() => {
     axios

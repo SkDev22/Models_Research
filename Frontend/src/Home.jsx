@@ -1,13 +1,13 @@
-import React from 'react'
-import Navbar from './components/navbar/Navbar'
-import HeroSection from './components/homePageComponents/HeroSection'
-import FeaturedRooms from './components/homePageComponents/FeaturedRooms'
-import Features from './components/homePageComponents/Features'
-import Stats from './components/homePageComponents/Stats'
-import Testimonials from './components/homePageComponents/Testimonials'
-import AddProperty from './components/homePageComponents/AddProperty'
-import CalltoAction from './components/contactComponents/CalltoAction'
-import Footer from './components/footer/Footer'
+import React from "react";
+import Navbar from "./components/navbar/Navbar";
+import HeroSection from "./components/homePageComponents/HeroSection";
+import FeaturedRooms from "./components/homePageComponents/FeaturedRooms";
+import Features from "./components/homePageComponents/Features";
+import Stats from "./components/homePageComponents/Stats";
+import Testimonials from "./components/homePageComponents/Testimonials";
+import AddProperty from "./components/homePageComponents/AddProperty";
+import CalltoAction from "./components/contactComponents/CalltoAction";
+import Footer from "./components/footer/Footer";
 
 const Home = () => {
   return (
@@ -56,7 +56,7 @@ const Home = () => {
       {/* Footer */}
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

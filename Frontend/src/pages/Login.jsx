@@ -27,7 +27,22 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div className="absolute inset-0">
+        <img
+          // src="/cOverview.jpg"
+          src="/image.jpg"
+          alt="Room Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-white/70"></div>
+      </div>
+      <h1 className="text-5xl z-10">
+        Welcome to <span className="font-bold text-[#[#22223b]">LodgeLink</span>
+      </h1>
+      <h1 className="mb-6 mt-3 text-lg  z-10">
+        Please log in to the system first
+      </h1>
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md  z-10">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Login
         </h1>
